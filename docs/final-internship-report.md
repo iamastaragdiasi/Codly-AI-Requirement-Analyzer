@@ -102,7 +102,7 @@ Any future live AI integration must use only Codly-approved services and credent
 
 # Chapter 9 — Testing
 
-A prior local run reported **46 tests passed and 283 assertions** in approximately 2.80 seconds; another earlier local record reported 57 tests and 325 assertions. These are historical snapshots, not the latest CI result. The first CI run for this acceptance-hardening branch reported 52 passed and 6 failed: five failures came from the missing Vite manifest during view rendering, and one came from DOCX MIME validation. The CI workflow and document-extension validation have since been updated; the latest rerun must complete before a current passing total can be reported.
+A prior local run reported **46 tests passed and 283 assertions** in approximately 2.80 seconds. The first CI run for this acceptance-hardening branch reported 52 passed and 6 failed: five failures came from the missing Vite manifest during view rendering, and one came from DOCX MIME validation. After correcting the CI asset-build sequence and document-extension validation, the subsequent GitHub Actions run passed **58 tests with 325 assertions** in approximately 2.52 seconds. The frontend build job also passed. The successful test run corresponds to the application-code commit before later documentation-only edits.
 
 Recorded test coverage includes:
 
@@ -141,7 +141,7 @@ These items are proposals, not claims about existing functionality. Any external
 
 # Chapter 12 — Conclusion
 
-The inspected implementation demonstrates a Laravel-based requirement-analysis workspace with structured intake, deterministic analysis, validation, provenance handling, revision-sensitive review, approval records and provisional proposal generation. PDF/DOCX text extraction is implemented. The latest CI run available during this draft was still being rerun after identified test-environment and DOCX-validation failures, so no latest passing total is asserted here.
+The inspected implementation demonstrates a Laravel-based requirement-analysis workspace with structured intake, deterministic analysis, validation, provenance handling, revision-sensitive review, approval records and provisional proposal generation. PDF/DOCX text extraction is implemented. The successful GitHub Actions run passed 58 tests with 325 assertions, and the frontend build passed. These checks support a development/demo milestone, not production readiness or completed human evaluation.
 
 The evidence supports a development/demo milestone, not a claim of complete acceptance or production readiness. Live AI integration, end-to-end document-upload verification, completed human evaluation results, company-process confirmation and final deployment review remain outstanding or require additional evidence.
 
