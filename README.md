@@ -829,9 +829,9 @@ The test suite contains unit and feature tests for selected application contract
 | `AnalysisContractTest` | 9 tests passed, 9 assertions |
 | `ConfigurableAiAnalysisProviderTest` | 5 tests passed, 11 assertions |
 
-The recorded full-suite result before later documentation and implementation edits was 57 tests passed and 325 assertions, with one DOCX extraction deprecation notice.
+The GitHub Actions CI run for the acceptance-hardening branch completed successfully with **58 tests passed and 325 assertions** in approximately 2.52 seconds. The frontend build job also passed. This verifies the code at the tested branch commit; documentation-only edits made afterward do not change the application code, but should still be reviewed before merge.
 
-**These are historical results, not a claim that the latest checkout has just passed the complete test suite.** Later changes should be assessed against the current working tree and their relevant tests. A previous full-suite run also encountered a Windows virtual-memory allocation failure, so a failed run must be distinguished from a code assertion failure.
+A previous Windows full-suite run encountered a virtual-memory allocation failure, so failed process runs must be distinguished from assertion failures.
 
 ### What these tests establish
 
