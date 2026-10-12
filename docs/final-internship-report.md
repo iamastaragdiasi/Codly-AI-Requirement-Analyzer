@@ -6,7 +6,7 @@
 **Report date:** 12 October 2026
 **Status:** Draft for factual review and supervisor approval
 
-> This report describes the current inspected implementation and recorded test evidence. It does not claim that live AI integration, complete end-to-end document-upload behaviour, production deployment or business impact has been demonstrated. PDF/DOCX text extraction is implemented for supported, readable documents; scanned/image-only PDFs and OCR remain unsupported. Chapter 2 deliberately distinguishes confirmed project information from Codly's internal process, which must be confirmed by the supervisor.
+> This report describes the current inspected implementation and recorded test evidence. It does not claim that live AI integration, complete end-to-end document-upload behaviour, production deployment or business impact has been demonstrated. PDF/DOCX text extraction is implemented for supported, readable documents; scanned/image-only PDFs and OCR remain unsupported. The latest end-to-end upload/analysis verification is still pending. Chapter 2 deliberately distinguishes confirmed project information from Codly's internal process, which must be confirmed by the supervisor.
 
 # Chapter 1 — Introduction
 
@@ -37,7 +37,7 @@ Quantified claims about time saved, defect reduction, cost savings or productivi
 The proposed workflow is:
 
 1. Authenticate the user and create or open a project workspace.
-2. Record project context and submit text or structured requirement information.
+2. Record project context and submit text, structured information, or a supported readable PDF/DOCX document.
 3. Run the available analysis provider and validate its structured output.
 4. Inspect findings, source evidence, missing information, ambiguity and scope suggestions.
 5. Record human edits, clarifications and review decisions against a specific revision.
@@ -51,7 +51,7 @@ The current implementation provides a deterministic demo for the analysis stage.
 
 ## Implemented technology
 
-- **PHP 8.4.25:** application runtime.
+- **PHP:** application runtime; the recorded local CLI was PHP 8.5.0, while CI is configured for PHP 8.4.
 - **Laravel 13.35.0:** routing, request validation, authentication, authorization and application services.
 - **MySQL 8.0.46:** relational persistence.
 - **Blade and web forms:** workspace and review interface.
@@ -102,7 +102,7 @@ Any future live AI integration must use only Codly-approved services and credent
 
 # Chapter 9 — Testing
 
-The latest recorded successful run reported **46 tests passed and 283 assertions** in approximately 2.80 seconds. The run followed repair of a PHP file encoding issue that had temporarily caused a namespace-declaration fatal error.
+A prior local run reported **46 tests passed and 283 assertions** in approximately 2.80 seconds; another earlier local record reported 57 tests and 325 assertions. These are historical snapshots, not the latest CI result. The first CI run for this acceptance-hardening branch reported 52 passed and 6 failed: five failures came from the missing Vite manifest during view rendering, and one came from DOCX MIME validation. The CI workflow and document-extension validation have since been updated; the latest rerun must complete before a current passing total can be reported.
 
 Recorded test coverage includes:
 
@@ -111,7 +111,7 @@ Recorded test coverage includes:
 - Provenance and evidence validation.
 - Stale proposal submission and proposals without current approval.
 - Unauthorized or unassigned reviewer access.
-- Empty, oversized and unsupported file submissions.
+- Empty, oversized and unsupported source submissions; PDF/DOCX upload validation is still subject to the latest CI rerun and manual acceptance.
 - Explicit client confirmation and changed confirmed content.
 - Confidential content escaping and bounded failure handling.
 - Revision history, stale forms, login/logout and database failure handling.
@@ -122,7 +122,7 @@ These results are evidence for the exercised tests only. They are not proof of c
 
 The current analysis provider is deterministic rather than a live LLM. Its heuristic approach cannot provide general semantic understanding and must not be presented as equivalent to a production AI service.
 
-Document upload and extraction are unsupported. OCR, audio, screenshot and URL analysis are not part of the current implemented intake. A completed human evaluation sheet and measured business-impact study have not been evidenced in this draft.
+Readable PDF/DOCX text extraction and a document-upload workflow are implemented in the current branch, but full end-to-end acceptance for both formats remains pending. Scanned/image-only PDFs, OCR, audio, screenshot and URL analysis are not part of the current implemented intake. A completed human evaluation sheet and measured business-impact study have not been evidenced in this draft.
 
 The current test suite does not establish production deployment security, performance under load, backup recovery, availability or complete acceptance of every official requirement. The current application should be treated as a development/demo system until these areas are evaluated.
 
@@ -131,7 +131,7 @@ The current test suite does not establish production deployment security, perfor
 Potential future work, subject to supervisor approval, includes:
 
 - Integration with a Codly-approved AI provider.
-- PDF/DOCX extraction with validation and source-location traceability.
+- End-to-end PDF/DOCX acceptance, additional malformed/encrypted/oversized file cases, and source-location traceability.
 - A curated fictional or authorized evaluation dataset and a completed human evaluation sheet.
 - Expanded role-based usability and end-to-end acceptance testing.
 - Additional observability, operational monitoring, backup/recovery and deployment hardening.
@@ -141,7 +141,7 @@ These items are proposals, not claims about existing functionality. Any external
 
 # Chapter 12 — Conclusion
 
-The inspected implementation demonstrates a Laravel-based requirement-analysis workspace with structured intake, deterministic analysis, validation, provenance handling, revision-sensitive review, approval records and provisional proposal generation. The latest recorded automated run passed 46 tests with 283 assertions.
+The inspected implementation demonstrates a Laravel-based requirement-analysis workspace with structured intake, deterministic analysis, validation, provenance handling, revision-sensitive review, approval records and provisional proposal generation. PDF/DOCX text extraction is implemented. The latest CI run available during this draft was still being rerun after identified test-environment and DOCX-validation failures, so no latest passing total is asserted here.
 
 The evidence supports a development/demo milestone, not a claim of complete acceptance or production readiness. Live AI integration, end-to-end document-upload verification, completed human evaluation results, company-process confirmation and final deployment review remain outstanding or require additional evidence.
 
