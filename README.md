@@ -158,7 +158,7 @@ The following table distinguishes implemented components from capabilities that 
 | Draft proposal generation | Implemented as a workflow capability | Commercial values and terms remain provisional |
 | Automated effort estimation | Not implemented as an approved model | Any effort figures are provisional |
 | Approved pricing-rule engine | Not implemented | No price should be represented as automatically approved |
-| Human evaluation dataset and measured quality results | Pending | The evaluation plan is not itself evidence of completed evaluation |
+| Human evaluation scenarios | Defined; human-rated results pending | [`docs/evaluation-cases.md`](docs/evaluation-cases.md) contains fictional cases and expected findings; no measured quality score is claimed |
 | Live production AI integration | Unverified | Requires authorization, provider configuration, and integration testing |
 | Production deployment and business-impact validation | Not established | Requires separate deployment and operational evidence |
 
@@ -174,7 +174,7 @@ The intended workflow is:
    Create a project and establish its initial context.
 
 2. **Requirement intake**
-   Supply supported text or structured requirement information. Supported readable PDF and DOCX files can be processed by the document extraction component.
+   Supply text, structured requirement information, or a readable PDF/DOCX document through the supported intake form. PDF/DOCX text extraction is implemented; scanned/image-only files and OCR are unsupported.
 
 3. **Source preparation**
    Extract supported document text and associate source information with the analysis workflow.
@@ -273,7 +273,7 @@ This diagram represents the logical design, not a claim that every external inte
 
 ### Important architectural distinction
 
-The existence of a configurable provider implementation is not evidence that a live model is connected. The current analysis pipeline uses the deterministic demonstration provider, and live provider execution remains unverified.
+The existence of a configurable provider implementation is not evidence that a live model is connected. The default analysis pipeline uses the deterministic demonstration provider. An optional configurable provider adapter exists, but live provider execution is unverified and must remain disabled until Codly authorizes the service, endpoint, credentials, and data handling.
 
 ---
 
@@ -829,9 +829,9 @@ The test suite contains unit and feature tests for selected application contract
 | `AnalysisContractTest` | 9 tests passed, 9 assertions |
 | `ConfigurableAiAnalysisProviderTest` | 5 tests passed, 11 assertions |
 
-The recorded full-suite result before later documentation and implementation edits was 57 tests passed and 325 assertions, with one DOCX extraction deprecation notice.
+The GitHub Actions CI run for the acceptance-hardening branch completed successfully with **58 tests passed and 325 assertions** in approximately 2.52 seconds. The frontend build job also passed. This verifies the code at the tested branch commit; documentation-only edits made afterward do not change the application code, but should still be reviewed before merge.
 
-**These are historical results, not a claim that the latest checkout has just passed the complete test suite.** Later changes should be assessed against the current working tree and their relevant tests. A previous full-suite run also encountered a Windows virtual-memory allocation failure, so a failed run must be distinguished from a code assertion failure.
+A previous Windows full-suite run encountered a virtual-memory allocation failure, so failed process runs must be distinguished from assertion failures.
 
 ### What these tests establish
 

@@ -30,7 +30,7 @@ class StoreSourceRequest extends FormRequest
             'reference' => 'required_if:kind,clarification|nullable|string|max:200',
 
             'file' => $isDocument
-                ? 'required|file|mimes:pdf,docx|max:10240'
+                ? 'required|file|extensions:pdf,docx|max:10240'
                 : 'prohibited',
         ];
     }

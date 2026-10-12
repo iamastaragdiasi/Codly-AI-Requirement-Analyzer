@@ -3,7 +3,7 @@
 <h1>{{ $project->name }}</h1><p>Revision {{ $project->revision }} · {{ $project->isApproved() ? 'Human approved for this revision' : 'Awaiting review / renewed approval' }}</p>
 <section><h2>Project context</h2><form method="post" action="{{ route('projects.update',$project) }}">@csrf @method('PUT') <input type="hidden" name="revision" value="{{ $project->revision }}"> @include('project-fields')<button>Save context · invalidates approval</button></form></section>
 @if(auth()->id()===$project->user_id)<section><h2>Assign authorized reviewer</h2><form method="post" action="{{ route('projects.reviewer',$project) }}">@csrf<label>Reviewer<select name="reviewer_id" required>@foreach($reviewers as $reviewer)<option value="{{ $reviewer->id }}" @selected($project->reviewer_id===$reviewer->id)>{{ $reviewer->name }}</option>@endforeach</select></label><button>Assign</button></form></section>@endif
-<section><h2>Requirement or clarification intake</h2><p>Text and structured forms only. Maximum 50,000 characters; no PDF/DOCX or other uploads. Original text is retained. Sources start unconfirmed.</p>
+<section><h2>Requirement or clarification intake</h2><p>Text, structured and clarification forms are supported. You can also upload a text-readable PDF or DOCX (maximum 10 MB and 50,000 extracted characters). Scanned/image-only PDFs, OCR, TXT uploads, audio, screenshots and website fetching are not supported. Original text is retained; sources start unconfirmed.</p>
 <form method="post" action="{{ route('sources.store',$project) }}">@csrf
 <label>Source kind<select name="kind"><option>text</option><option>structured</option><option>clarification</option></select></label>
 <label>Original requirement / answer<textarea name="original" maxlength="50000" required>{{ old('original') }}</textarea></label>
@@ -36,7 +36,7 @@
 </form>
 </section>
 <details><summary>Original sources ({{ $project->sources->count() }})</summary>@foreach($project->sources as $source)<article><strong>Source #{{ $source->id }} · {{ $source->kind }} · by user #{{ $source->user_id }} · {{ $source->created_at }}</strong><pre>{{ $source->original }}</pre><p>{{ json_encode($source->metadata,JSON_UNESCAPED_UNICODE) }}</p></article>@endforeach</details></section>
-<section><h2>Structured analysis</h2><form method="post" action="{{ route('analysis.store',$project) }}">@csrf<button>Generate local demo analysis · new revision</button></form>
+<section><h2>Structured analysis</h2><form method="post" action="{{ route('analysis.store',$project) }}">@csrf<button>Generate analysis · new revision</button></form>
 @if($analysis)<p>{{ $analysis->provider }} · {{ $analysis->status }} · revision {{ $analysis->revision }} @if($analysis->revision!==$project->revision) · STALE — regenerate before approval @endif</p>
 @foreach($analysis->failures as $module=>$failure)<p role="alert">{{ $module }}: {{ $failure }}</p>@endforeach
 @foreach($analysis->results as $module=>$result)<details><summary>{{ str_replace('_',' ',$module) }} · {{ count($result['items']) }} findings</summary>
