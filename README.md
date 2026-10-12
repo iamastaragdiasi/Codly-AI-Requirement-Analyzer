@@ -1051,3 +1051,7 @@ No commit, push, external AI connection, or public release should be assumed to 
 **Framework:** Laravel 13
 **Current analysis mode:** Deterministic demonstration provider
 **Documentation status:** Comprehensive overview; update implementation claims as new verification evidence becomes available
+
+## AI Usage Disclosure
+
+Development assistance from AI tools and runtime AI limitations are documented in [AI Usage Disclosure](AI_USAGE.md).
