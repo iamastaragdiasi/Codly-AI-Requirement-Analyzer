@@ -36,7 +36,7 @@
 </form>
 </section>
 <details><summary>Original sources ({{ $project->sources->count() }})</summary>@foreach($project->sources as $source)<article><strong>Source #{{ $source->id }} · {{ $source->kind }} · by user #{{ $source->user_id }} · {{ $source->created_at }}</strong><pre>{{ $source->original }}</pre><p>{{ json_encode($source->metadata,JSON_UNESCAPED_UNICODE) }}</p></article>@endforeach</details></section>
-<section><h2>Structured analysis</h2><form method="post" action="{{ route('analysis.store',$project) }}">@csrf<button>Generate local demo analysis · new revision</button></form>
+<section><h2>Structured analysis</h2><form method="post" action="{{ route('analysis.store',$project) }}">@csrf<button>Generate analysis · new revision</button></form>
 @if($analysis)<p>{{ $analysis->provider }} · {{ $analysis->status }} · revision {{ $analysis->revision }} @if($analysis->revision!==$project->revision) · STALE — regenerate before approval @endif</p>
 @foreach($analysis->failures as $module=>$failure)<p role="alert">{{ $module }}: {{ $failure }}</p>@endforeach
 @foreach($analysis->results as $module=>$result)<details><summary>{{ str_replace('_',' ',$module) }} · {{ count($result['items']) }} findings</summary>
