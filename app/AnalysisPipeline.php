@@ -34,6 +34,6 @@ class AnalysisPipeline
             }
         }
 
-        return $project->analyses()->create(['revision' => $project->revision, 'status' => $failures === [] ? 'complete' : 'failed', 'provider' => 'deterministic-demo', 'results' => $results, 'failures' => $failures]);
+        return $project->analyses()->create(['revision' => $project->revision, 'status' => $failures === [] ? 'complete' : 'failed', 'provider' => config('ai_analysis.driver') === 'openai_compatible' ? 'openai-compatible-ai' : 'deterministic-demo', 'results' => $results, 'failures' => $failures]);
     }
 }

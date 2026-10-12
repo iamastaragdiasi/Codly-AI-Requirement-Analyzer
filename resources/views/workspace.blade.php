@@ -10,6 +10,31 @@
 <label>User role<input name="role" maxlength="200"></label><label>Feature<input name="feature" maxlength="500"></label>
 <label>Priority<select name="priority">@foreach(['Must','Should','Could','Future'] as $priority)<option>{{ $priority }}</option>@endforeach</select></label>
 <label>Source or question reference<input name="reference" maxlength="200"></label><button>Submit evidence</button></form>
+<section>
+<h3>Upload requirement document</h3>
+<p>Upload a text-readable PDF or DOCX file. Maximum 10 MB and 50,000 extracted characters. Scanned PDFs and image-only documents are not supported. Extracted content is stored as unconfirmed source evidence.</p>
+<form method="post" enctype="multipart/form-data" action="{{ route('sources.store', $project) }}">
+@csrf
+<input type="hidden" name="kind" value="document">
+<label>Document file
+<input type="file" name="file" accept=".pdf,.docx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
+</label>
+<label>User role <input name="role" maxlength="200"></label>
+<label>Feature <input name="feature" maxlength="500"></label>
+<label>Priority
+<select name="priority">
+<option>Must</option>
+<option>Should</option>
+<option>Could</option>
+<option>Future</option>
+</select>
+</label>
+<button type="submit">Upload and extract text</button>
+@error('file')
+<p role="alert">{{ $message }}</p>
+@enderror
+</form>
+</section>
 <details><summary>Original sources ({{ $project->sources->count() }})</summary>@foreach($project->sources as $source)<article><strong>Source #{{ $source->id }} · {{ $source->kind }} · by user #{{ $source->user_id }} · {{ $source->created_at }}</strong><pre>{{ $source->original }}</pre><p>{{ json_encode($source->metadata,JSON_UNESCAPED_UNICODE) }}</p></article>@endforeach</details></section>
 <section><h2>Structured analysis</h2><form method="post" action="{{ route('analysis.store',$project) }}">@csrf<button>Generate local demo analysis · new revision</button></form>
 @if($analysis)<p>{{ $analysis->provider }} · {{ $analysis->status }} · revision {{ $analysis->revision }} @if($analysis->revision!==$project->revision) · STALE — regenerate before approval @endif</p>

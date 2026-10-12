@@ -6,7 +6,7 @@
 **Report date:** 12 October 2026
 **Status:** Draft for factual review and supervisor approval
 
-> This report describes the current inspected implementation and recorded test evidence. It does not claim that live AI integration, document extraction, production deployment or business impact has been demonstrated. Chapter 2 deliberately distinguishes confirmed project information from Codly's internal process, which must be confirmed by the supervisor.
+> This report describes the current inspected implementation and recorded test evidence. It does not claim that live AI integration, complete end-to-end document-upload behaviour, production deployment or business impact has been demonstrated. PDF/DOCX text extraction is implemented for supported, readable documents; scanned/image-only PDFs and OCR remain unsupported. Chapter 2 deliberately distinguishes confirmed project information from Codly's internal process, which must be confirmed by the supervisor.
 
 # Chapter 1 — Introduction
 
@@ -88,7 +88,7 @@ The inspected implementation includes:
 - Proposal drafting with human-entered effort, price, currency, maintenance terms, third-party costs and client responsibilities.
 - Tests covering malformed analysis output, conflicts, provenance, stale revisions, authorization and confidential-content handling.
 
-PDF/DOCX extraction and other excluded media inputs are not implemented. The current code must not be described as a fully integrated live AI platform.
+PDF/DOCX text extraction is implemented for supported, readable documents. Scanned or image-only PDFs and OCR remain unsupported, as do the other excluded media inputs. End-to-end upload verification remains outstanding. The current code must not be described as a fully integrated live AI platform.
 
 # Chapter 8 — AI Methodology
 
@@ -143,6 +143,6 @@ These items are proposals, not claims about existing functionality. Any external
 
 The inspected implementation demonstrates a Laravel-based requirement-analysis workspace with structured intake, deterministic analysis, validation, provenance handling, revision-sensitive review, approval records and provisional proposal generation. The latest recorded automated run passed 46 tests with 283 assertions.
 
-The evidence supports a development/demo milestone, not a claim of complete acceptance or production readiness. Live AI integration, document extraction, human evaluation results, company-process confirmation and final deployment review remain outstanding or require additional evidence.
+The evidence supports a development/demo milestone, not a claim of complete acceptance or production readiness. Live AI integration, end-to-end document-upload verification, completed human evaluation results, company-process confirmation and final deployment review remain outstanding or require additional evidence.
 
 Before submission, the author and supervisor should review the acceptance matrix, confirm company-specific facts, inspect the final repository and configuration, verify all reported test results, and approve any outstanding scope exclusions.

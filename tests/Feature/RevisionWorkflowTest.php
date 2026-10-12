@@ -226,4 +226,68 @@ class RevisionWorkflowTest extends TestCase
         $this->assertSame(['security' => 'Module failed. No confidential exception details stored.'], $analysis->failures);
         $this->assertArrayHasKey('extraction',$analysis->results);
     }
+    public function test_docx_upload_extracts_and_stores_unconfirmed_source(): void
+    {
+        $owner = \App\Models\User::factory()->create();
+        $project = \App\Models\Project::factory()->create([
+            'user_id' => $owner->id,
+            'revision' => 1,
+        ]);
+
+        $document = new \PhpOffice\PhpWord\PhpWord();
+        $document->addSection()->addText(
+            'Customers need an order tracking dashboard.'
+        );
+
+        $tempPath = tempnam(sys_get_temp_dir(), 'codly-upload-');
+        self::assertNotFalse($tempPath);
+
+        $docxPath = $tempPath . '.docx';
+        @unlink($tempPath);
+
+        try {
+            \PhpOffice\PhpWord\IOFactory::createWriter(
+                $document,
+                'Word2007'
+            )->save($docxPath);
+
+            $file = new \Illuminate\Http\UploadedFile(
+                $docxPath,
+                'requirements.docx',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                null,
+                true
+            );
+
+            $this->actingAs($owner)
+                ->post(route('sources.store', $project), [
+                    'kind' => 'document',
+                    'priority' => 'Must',
+                    'file' => $file,
+                ])
+                ->assertRedirect(route('projects.show', $project));
+
+            $source = $project->sources()->firstOrFail();
+
+            $this->assertSame('document', $source->kind);
+            $this->assertStringContainsString(
+                'Customers need an order tracking dashboard.',
+                $source->original
+            );
+            $this->assertFalse($source->metadata['client_confirmed']);
+            $this->assertSame(
+                'requirements.docx',
+                $source->metadata['source_filename']
+            );
+            $this->assertSame(
+                'docx',
+                $source->metadata['document_format']
+            );
+
+            $project->refresh();
+            $this->assertSame(2, $project->revision);
+        } finally {
+            @unlink($docxPath);
+        }
+    }
 }

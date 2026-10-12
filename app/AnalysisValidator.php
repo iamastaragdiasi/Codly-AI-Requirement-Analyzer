@@ -14,9 +14,9 @@ class AnalysisValidator
             throw ValidationException::withMessages(['output' => 'Unknown structured output keys.']);
         }
         $validated = Validator::make($output, [
-            'prompt_version' => 'required|in:demo-v1',
+            'prompt_version' => 'required|in:demo-v1,ai-v1',
             'items' => 'present|array|max:300',
-            'items.*' => 'array:title,provenance,source_ids,statements,priority,scope,role,objective,feature,dependencies,notes',
+            'items.*' => 'array:title,provenance,source_ids,statements,priority,scope,role,objective,feature,dependencies,notes,category',
             'items.*.title' => 'required|string|max:1000',
             'items.*.provenance' => 'required|in:Client Confirmed,AI Inferred,AI Suggested,Missing',
             'items.*.source_ids' => 'present|array',
@@ -24,6 +24,7 @@ class AnalysisValidator
             'items.*.statements' => 'present|array',
             'items.*.statements.*' => 'string|max:50000',
             'items.*.priority' => 'required|in:Must,Should,Could,Future',
+            'items.*.category' => 'sometimes|nullable|in:Functional,Non-Functional,Technical,Business,Optional',
             'items.*.scope' => 'required|in:included,excluded,assumption,optional,unresolved',
             'items.*.role' => 'required|string|max:5000',
             'items.*.objective' => 'required|string|max:10000',

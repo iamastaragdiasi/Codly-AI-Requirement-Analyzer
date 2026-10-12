@@ -11,9 +11,27 @@ class StoreSourceRequest extends FormRequest
         return $this->user()->can('contribute', $this->route('project'));
     }
 
-    /** @return array<string,string> */
     public function rules(): array
     {
-        return ['kind' => 'required|in:text,structured,clarification', 'original' => 'required|string|max:50000|regex:/\\S/u', 'role' => 'nullable|string|max:200', 'feature' => 'nullable|string|max:500', 'priority' => 'required|in:Must,Should,Could,Future', 'reference' => 'required_if:kind,clarification|nullable|string|max:200', 'file' => 'prohibited'];
+        $isDocument = $this->input('kind') === 'document';
+
+        return [
+            'kind' => 'required|in:text,structured,clarification,document',
+
+            'original' => $isDocument
+                ? 'prohibited'
+                : 'required|string|max:50000|regex:/\S/u',
+
+            'role' => 'nullable|string|max:200',
+            'feature' => 'nullable|string|max:500',
+
+            'priority' => 'required|in:Must,Should,Could,Future',
+
+            'reference' => 'required_if:kind,clarification|nullable|string|max:200',
+
+            'file' => $isDocument
+                ? 'required|file|mimes:pdf,docx|max:10240'
+                : 'prohibited',
+        ];
     }
 }
