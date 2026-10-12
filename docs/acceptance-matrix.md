@@ -39,6 +39,6 @@ A passing test proves only the behavior exercised by that test. This matrix is a
 
 ## Acceptance decision
 
-The current evidence supports a tested development/demo workflow with source traceability, structured validation, revision handling and human review controls. It does not establish full requirement coverage, live AI integration, document extraction, production readiness or business impact.
+The current evidence supports a development/demo workflow with source traceability, structured validation, revision handling, human review controls, and unit-tested PDF/DOCX text extraction. It does not establish full requirement coverage, live AI integration, complete end-to-end upload acceptance, production readiness or business impact.
 
 Final acceptance requires the remaining gaps to be resolved or explicitly approved as out of scope, with evidence retained for every decision.
