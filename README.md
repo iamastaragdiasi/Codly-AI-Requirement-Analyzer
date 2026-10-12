@@ -158,7 +158,7 @@ The following table distinguishes implemented components from capabilities that 
 | Draft proposal generation | Implemented as a workflow capability | Commercial values and terms remain provisional |
 | Automated effort estimation | Not implemented as an approved model | Any effort figures are provisional |
 | Approved pricing-rule engine | Not implemented | No price should be represented as automatically approved |
-| Human evaluation dataset and measured quality results | Pending | The evaluation plan is not itself evidence of completed evaluation |
+| Human evaluation scenarios | Defined; human-rated results pending | [`docs/evaluation-cases.md`](docs/evaluation-cases.md) contains fictional cases and expected findings; no measured quality score is claimed |
 | Live production AI integration | Unverified | Requires authorization, provider configuration, and integration testing |
 | Production deployment and business-impact validation | Not established | Requires separate deployment and operational evidence |
 
