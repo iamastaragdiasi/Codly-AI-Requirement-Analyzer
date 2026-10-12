@@ -174,7 +174,7 @@ The intended workflow is:
    Create a project and establish its initial context.
 
 2. **Requirement intake**
-   Supply supported text or structured requirement information. Supported readable PDF and DOCX files can be processed by the document extraction component.
+   Supply text, structured requirement information, or a readable PDF/DOCX document through the supported intake form. PDF/DOCX text extraction is implemented; scanned/image-only files and OCR are unsupported.
 
 3. **Source preparation**
    Extract supported document text and associate source information with the analysis workflow.
@@ -273,7 +273,7 @@ This diagram represents the logical design, not a claim that every external inte
 
 ### Important architectural distinction
 
-The existence of a configurable provider implementation is not evidence that a live model is connected. The current analysis pipeline uses the deterministic demonstration provider, and live provider execution remains unverified.
+The existence of a configurable provider implementation is not evidence that a live model is connected. The default analysis pipeline uses the deterministic demonstration provider. An optional configurable provider adapter exists, but live provider execution is unverified and must remain disabled until Codly authorizes the service, endpoint, credentials, and data handling.
 
 ---
 
