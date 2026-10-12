@@ -1,0 +1,2 @@
+@extends('layout')
+@section('content')<h1>Sign in</h1><form method="post" action="{{ route('login') }}">@csrf<label>Email<input type="email" name="email" required autocomplete="username" value="{{ old('email') }}"></label><label>Password<input type="password" name="password" required autocomplete="current-password"></label><button>Sign in</button></form><p>Accounts are provisioned by a trusted local operator. No public registration.</p>@endsection

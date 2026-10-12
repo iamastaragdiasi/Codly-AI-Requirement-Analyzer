@@ -1,0 +1,3 @@
+@foreach(['name'=>'Project name','business_problem'=>'Business problem','objectives'=>'Objectives','target_users'=>'Target users / stakeholders / roles'] as $field=>$label)
+<label>{{ $label }}<textarea name="{{ $field }}" required maxlength="{{ $field==='name' ? 200 : ($field==='target_users' ? 5000 : 10000) }}">{{ old($field,isset($project) ? $project->$field : '') }}</textarea></label>
+@endforeach

@@ -1,0 +1,3 @@
+@extends('layout')
+@section('content')<h1>Projects</h1><section><h2>Create project</h2><form method="post" action="{{ route('projects.store') }}">@csrf @include('project-fields')<button>Create project</button></form></section>
+@forelse($projects as $project)<section><a href="{{ route('projects.show',$project) }}">{{ $project->name }}</a><p>Revision {{ $project->revision }}</p></section>@empty<p>No projects yet.</p>@endforelse{{ $projects->links() }}@endsection

@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+:root { color-scheme: light; font-family: system-ui,sans-serif; color: #192d42; background:#f1f5f8; }
+body { margin:0; } header { background:#152b43; color:white; padding:1.2rem 3%; display:flex; align-items:center; flex-wrap:wrap; gap:1.5rem; } header a { color:white; } main { max-width:1100px; margin:auto; padding:2rem 1rem; } section { background:white; border:1px solid #dce3eb; border-radius:12px; padding:1.4rem; margin:1.2rem 0; } aside { padding:1rem; background:#fff2ca; border-radius:8px; } h1 { font-size:2rem; font-weight:700; margin:1.5rem 0; } h2 { font-size:1.35rem; font-weight:650; margin-bottom:1rem; } h3 { font-weight:650; } p { margin:.7rem 0; } label { display:block; margin:.9rem 0; font-weight:600; } input,textarea,select { display:block; border:1px solid #9aabba; border-radius:6px; background:white; padding:.6rem; width:100%; box-sizing:border-box; font:inherit; margin-top:.35rem; } textarea { min-height:85px; } button,.button { display:inline-block; background:#18616b; color:white; border-radius:6px; padding:.65rem 1rem; cursor:pointer; text-decoration:none; } a { color:#18616b; text-decoration:underline; } details { margin:1rem 0; } summary { cursor:pointer; font-weight:650; } article { border-top:1px solid #dae1e7; padding:1rem 0; } pre { white-space:pre-wrap; overflow-wrap:anywhere; font:inherit; background:#f3f6f9; padding:1rem; } [role=alert] { background:#ffe3e1; padding:1rem; } :focus-visible { outline:3px solid #d78214; outline-offset:3px; }
