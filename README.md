@@ -829,7 +829,7 @@ The test suite contains unit and feature tests for selected application contract
 | `AnalysisContractTest` | 9 tests passed, 9 assertions |
 | `ConfigurableAiAnalysisProviderTest` | 5 tests passed, 11 assertions |
 
-The GitHub Actions CI run for the acceptance-hardening branch completed successfully with **58 tests passed and 325 assertions** in approximately 2.52 seconds. The frontend build job also passed. This verifies the code at the tested branch commit; documentation-only edits made afterward do not change the application code, but should still be reviewed before merge.
+The operator supplied a historical baseline of **58 passing tests and 325 assertions** and a passing frontend build. Those results do not verify subsequent changes. On 2026-10-13 the frontend build and PHP syntax checks passed; the focused Laravel tests and Pint were blocked by compatible-runtime access. Browser acceptance is outstanding. See [actual execution evidence](docs/FINAL_EXECUTION_STATUS.md).
 
 A previous Windows full-suite run encountered a virtual-memory allocation failure, so failed process runs must be distinguished from assertion failures.
 
@@ -1054,4 +1054,12 @@ No commit, push, external AI connection, or public release should be assumed to 
 
 ## AI Usage Disclosure
 
-Development assistance from AI tools and runtime AI limitations are documented in [AI Usage Disclosure](AI_USAGE.md).
+Codex/OpenAI-assisted engineering, documentation and testing, human review responsibility, runtime DEMO limits and company authorization requirements are documented in [AI Usage Disclosure](docs/AI_USAGE_DISCLOSURE.md). The earlier [AI usage note](AI_USAGE.md) remains available.
+
+Current changes and actual verification outcomes are recorded in [Final Execution Status](docs/FINAL_EXECUTION_STATUS.md). The project remains a DRAFT development/demo milestone pending human acceptance.
+
+## Current implementation changes — 2026-10-13
+
+Content-based MIME validation now complements PDF/DOCX extensions and the 10 MB upload cap. DOCX archives must contain the expected document entries and stay within 20 MB of declared expanded content; table-cell text is traversed. Extracted text is normalized, capped at 50,000 characters per source, and stored with filename/format; original binaries and page/paragraph positions are not retained. These changes need behavioral and representative document acceptance.
+
+Demo classification now supplies a candidate category from Functional, Non-Functional, Technical, Business and Optional, editable by the assigned reviewer through the revision workflow. Priorities display Must Have, Should Have, Could Have and Future while keeping existing stored values. Draft proposals include payment/support terms, source-linked included deliverables/exclusions and a nonbinding notice; absent terms remain unresolved. Detailed business types, outcomes, journeys and entity/integration design remain incomplete demo outputs.

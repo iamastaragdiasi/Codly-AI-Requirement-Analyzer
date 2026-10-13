@@ -15,7 +15,7 @@ class ProposalController extends Controller
     public function store(Request $request, Project $project, ProposalBuilder $builder, WorkspaceRevision $revisions): RedirectResponse
     {
         Gate::authorize('review', $project);
-        $data = $request->validate(['revision' => 'required|integer', 'effort_hours' => 'nullable|numeric|min:0|max:1000000', 'estimate_notes' => 'nullable|string|max:2000', 'price' => 'nullable|numeric|min:0|max:999999999', 'currency' => 'required_with:price|nullable|in:INR,USD,EUR,GBP', 'maintenance' => 'required|string|max:5000', 'third_party_costs' => 'required|string|max:5000', 'client_responsibilities' => 'required|string|max:5000']);
+        $data = $request->validate(['revision' => 'required|integer', 'effort_hours' => 'nullable|numeric|min:0|max:1000000', 'estimate_notes' => 'nullable|string|max:2000', 'price' => 'nullable|numeric|min:0|max:999999999', 'currency' => 'required_with:price|nullable|in:INR,USD,EUR,GBP', 'payment_structure' => 'nullable|string|max:5000', 'support' => 'nullable|string|max:5000', 'maintenance' => 'required|string|max:5000', 'third_party_costs' => 'required|string|max:5000', 'client_responsibilities' => 'required|string|max:5000']);
         DB::transaction(function () use ($request, $project, $builder, $revisions, $data): void {
             $locked = Project::whereKey($project->id)->lockForUpdate()->firstOrFail();
             Gate::authorize('review', $locked);

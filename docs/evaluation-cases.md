@@ -1,8 +1,8 @@
 # Fictional Human-Evaluation Cases
 
-**Project:** Codly AI-Powered Business Requirement & Project Analysis System  
-**Dataset version:** 1.0  
-**Status:** Prepared for human evaluation; no ratings or aggregate results recorded  
+**Project:** Codly AI-Powered Business Requirement & Project Analysis System
+**Dataset version:** 1.1
+**Status:** Prepared for human evaluation; no ratings or aggregate results recorded
 **Data policy:** All names, products, systems, figures and statements below are fictional.
 
 ## How to use this dataset
@@ -29,7 +29,7 @@
 
 ### EVAL-03 — Contradictory source statements
 
-**Source A:** “Customers may cancel a booking up to 24 hours before the appointment.”  
+**Source A:** “Customers may cancel a booking up to 24 hours before the appointment.”
 **Source B:** “Bookings are non-cancellable after payment.”
 
 **Expected findings:** Preserve both statements and their source references; flag the policy conflict and ask an authorized stakeholder which rule governs, including whether timing and payment status change the rule. Do not resolve the conflict by guessing.
@@ -78,7 +78,7 @@
 
 ### EVAL-11 — Scope change after approval
 
-**Initial input:** “A member can download their own monthly statement.”  
+**Initial input:** “A member can download their own monthly statement.”
 **Change:** “Finance staff must also export all members’ statements in bulk.”
 
 **Expected findings:** Treat bulk export and broader access as a scope change with potential authorization, privacy, audit and performance implications. Confirm that prior approval is stale for the new revision and requires review again. Do not imply the original approval covers the changed requirement.
@@ -91,15 +91,27 @@
 
 ### EVAL-13 — Edited requirement after approval
 
-**Initial input:** “Only the account owner can close an account.”  
+**Initial input:** “Only the account owner can close an account.”
 **Change:** “A support agent can close an account after manager approval.”
 
 **Expected findings:** Preserve the difference, surface the changed authorization policy, require review of the new revision, and do not carry forward an approval for the earlier revision.
 
 ### EVAL-14 — Unsupported fact or source reference
 
-**Input:** “Add an analytics page.”  
+**Input:** “Add an analytics page.”
 **Expected findings:** Record the broad request and ask which metrics, users, data sources, permissions and refresh requirements are needed. Every cited source ID must belong to the supplied sources; original statements must not be fabricated or presented as verbatim evidence when absent.
+
+### EVAL-15 — Readable PDF and DOCX table intake
+
+**Fictional document text:** “Customers need order tracking.” Put the same text in a selectable-text PDF and a DOCX table cell.
+
+**Expected findings:** Extract and retain the text as unconfirmed evidence; record format/filename and source ID. Run DEMO analysis, inspect source references, record changes requested and rejection before any legitimate scope approval, and check that a later edit invalidates approval. Draft payment/support fields must remain human-entered, nonbinding and revision-bound. Automated fixtures do not constitute human approval. Check the browser manually using [execution handoff steps](FINAL_EXECUTION_STATUS.md).
+
+### EVAL-16 — Document failures and unsupported content
+
+**Fictional fixtures:** Malformed PDF/DOCX, a valid ZIP renamed DOCX, HTML renamed DOCX, upload >10 MB, extracted text >50,000 characters, DOCX declared expanded entries >20 MB, real encrypted PDF and a scanned/image-only PDF.
+
+**Expected findings:** Refuse unsupported content safely with an actionable error, without persisting a source or advancing the revision. OCR is unavailable; offer a readable-text source rather than inventing extracted requirements. A synthetic encryption marker and a textless PDF fixture are regression aids, not representative browser acceptance of encrypted/scanned files.
 
 ## Recording results
 

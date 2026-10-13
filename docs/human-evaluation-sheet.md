@@ -31,7 +31,10 @@
 | Evaluator role (not sensitive identity details) | |
 | Input scenario / dataset ID | |
 | Input type | |
-| Provider/version | |
+| Provider/model actually used | |
+| Prompt version and dataset version | |
+| Application commit or uncommitted diff reference | |
+| Source IDs and original statements checked | |
 | Project revision | |
 | Expected result prepared before evaluation? | |
 | Output reference | |
@@ -95,3 +98,33 @@
 **Supervisor review:**
 
 Do not report averages, pass rates or evaluation conclusions until completed rating records exist. This template alone is not evidence of model quality.
+## Prepared case register — dataset 1.1
+
+All result fields below are intentionally blank. The authorized reviewer must enter observations and ratings after execution; this register is not a completed evaluation. See [case inputs and expected findings](evaluation-cases.md).
+
+| Case | Actual output/revision reference | Date | Rating sheet reference | Defects and retest | Human decision |
+|---|---|---|---|---|---|
+| EVAL-01 | | | | | |
+| EVAL-02 | | | | | |
+| EVAL-03 | | | | | |
+| EVAL-04 | | | | | |
+| EVAL-05 | | | | | |
+| EVAL-06 | | | | | |
+| EVAL-07 | | | | | |
+| EVAL-08 | | | | | |
+| EVAL-09 | | | | | |
+| EVAL-10 | | | | | |
+| EVAL-11 | | | | | |
+| EVAL-12 | | | | | |
+| EVAL-13 | | | | | |
+| EVAL-14 | | | | | |
+| EVAL-15 | | | | | |
+| EVAL-16 | | | | | |
+
+For document cases record filename, detected format, extracted text checked, browser/error evidence, and approval revision before/after changes. For malformed provider fixtures use the existing fake/test seam; do not enable an external service to trigger a failure. Choose acceptance criteria before scoring; explain N/A and retain denominator/matching rules before reporting aggregates.
+
+Authorized reviewer decision/name/date: __________
+
+Supervisor decision/signature/date: __________
+
+Codly provider/data-transfer/publication authorization reference, if applicable: __________

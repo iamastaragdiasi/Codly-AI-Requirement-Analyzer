@@ -1,5 +1,5 @@
 @extends('layout')
 @section('content')
 <h1>Turn business requirements into reviewable scope.</h1><p>Capture original evidence, clarify uncertainties, organize delivery, and approve a precise revision.</p><a class="button" href="{{ route('login') }}">Open workspace</a>
-<section><h2>Supported intake</h2><p>Text and structured forms only: up to 50,000 characters per submission and 100 sources per project. File uploads, PDF/DOCX extraction, OCR, audio, screenshots and URL analysis are not implemented.</p><p>Do not submit credentials or unnecessary personal data. Human approval does not change an inference into a client-confirmed fact.</p></section>
+<section><h2>Supported intake</h2><p>Text and structured forms are supported, along with text-readable PDF/DOCX uploads (maximum 10 MB and 50,000 extracted characters). Scanned/image-only PDFs, OCR, TXT uploads, audio, screenshots and website fetching are not supported. The project supports up to 100 sources and 200,000 total source characters per project. Analysis uses a deterministic DEMO provider; live AI is not verified.</p><p>Do not submit credentials or unnecessary personal data. Human approval does not change an inference into a client-confirmed fact.</p></section>
 @endsection

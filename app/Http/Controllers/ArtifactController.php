@@ -16,7 +16,7 @@ class ArtifactController extends Controller
     public function store(Request $request, Project $project, WorkspaceRevision $revisions, AnalysisValidator $validator): RedirectResponse
     {
         Gate::authorize('review', $project);
-        $data = $request->validate(['revision' => 'required|integer', 'module' => 'required|in:'.implode(',', AnalysisPipeline::MODULES), 'index' => 'required|integer|min:0', 'title' => 'required|string|max:1000', 'scope' => 'required|in:included,excluded,assumption,optional,unresolved', 'priority' => 'required|in:Must,Should,Could,Future', 'notes' => 'required|string|max:2000', 'decision' => 'required|in:edited,client_confirmed,rejected,resolved', 'role' => 'nullable|string|max:5000', 'objective' => 'nullable|string|max:10000', 'feature' => 'nullable|string|max:500', 'dependencies' => 'nullable|string|max:2000', 'evidence' => 'required_if:decision,client_confirmed|nullable|string|max:2000']);
+        $data = $request->validate(['revision' => 'required|integer', 'module' => 'required|in:'.implode(',', AnalysisPipeline::MODULES), 'index' => 'required|integer|min:0', 'title' => 'required|string|max:1000', 'scope' => 'required|in:included,excluded,assumption,optional,unresolved', 'priority' => 'required|in:Must,Should,Could,Future', 'category' => 'nullable|in:Functional,Non-Functional,Technical,Business,Optional', 'notes' => 'required|string|max:2000', 'decision' => 'required|in:edited,client_confirmed,rejected,resolved', 'role' => 'nullable|string|max:5000', 'objective' => 'nullable|string|max:10000', 'feature' => 'nullable|string|max:500', 'dependencies' => 'nullable|string|max:2000', 'evidence' => 'required_if:decision,client_confirmed|nullable|string|max:2000']);
         DB::transaction(function () use ($request, $project, $revisions, $validator, $data): void {
             $locked = Project::whereKey($project->id)->lockForUpdate()->firstOrFail();
             Gate::authorize('review', $locked);
@@ -26,7 +26,7 @@ class ArtifactController extends Controller
             $results = $analysis->results;
             $old = $results[$data['module']]['items'][$data['index']] ?? null;
             abort_unless($old, 422);
-            $new = array_replace($old, array_intersect_key($data, array_flip(['title', 'scope', 'priority', 'notes', 'role', 'objective', 'feature'])));
+            $new = array_replace($old, array_intersect_key($data, array_flip(['title', 'scope', 'priority', 'category', 'notes', 'role', 'objective', 'feature'])));
             if (array_key_exists('dependencies', $data)) {
                 $new['dependencies'] = array_values(array_filter(array_map('trim', explode(',', $data['dependencies'] ?? ''))));
             }

@@ -46,12 +46,14 @@ class DeterministicAnalysisProvider implements AnalysisProvider
                     break;
 
                 case 'classification':
-                    $base['title'] = preg_match(
-                        '/performance|availability|latency|accessible|scalab|uptime|response time|security/i',
-                        $text
-                    )
-                        ? 'Candidate non-functional requirement'
-                        : 'Candidate functional requirement';
+                    $base['category'] = match (true) {
+                        (bool) preg_match('/optional|nice to have|maybe/i', $text) => 'Optional',
+                        (bool) preg_match('/performance|availability|latency|accessible|scalab|uptime|response time|security/i', $text) => 'Non-Functional',
+                        (bool) preg_match('/\b(api|oauth|database|postgresql|mysql|webhook)\b/i', $text) => 'Technical',
+                        (bool) preg_match('/revenue|sales target|reduce manual|business goal|reconciliation/i', $text) => 'Business',
+                        default => 'Functional',
+                    };
+                    $base['title'] = 'Candidate '.$base['category'].' requirement';
 
                     $base['scope'] = preg_match(
                         '/out of scope|exclude|do not include/i',

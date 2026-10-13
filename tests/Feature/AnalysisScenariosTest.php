@@ -70,4 +70,37 @@ class AnalysisScenariosTest extends TestCase
         $this->assertSame('optional', $results['classification']['items'][2]['scope']);
         $this->assertStringContainsString('payment provider', $results['security']['items'][0]['title']);
     }
+
+    /** @return array<string, array{string, string}> */
+    public static function categories(): array
+    {
+        return [
+            'functional' => ['Customers view order status.', 'Functional'],
+            'non-functional' => ['Dashboard response time must be measurable.', 'Non-Functional'],
+            'technical' => ['Provide a REST API with OAuth.', 'Technical'],
+            'business' => ['Reduce manual reconciliation.', 'Business'],
+            'optional' => ['Optional reports may be added later.', 'Optional'],
+        ];
+    }
+
+    #[DataProvider('categories')]
+    public function test_demo_category_is_explicit_and_does_not_confirm_the_client(string $text, string $category): void
+    {
+        config(['ai_analysis.driver' => 'demo']);
+        Http::preventStrayRequests();
+        $owner = User::factory()->create();
+        $project = Project::factory()->create(['user_id' => $owner->id]);
+        $this->actingAs($owner)->post(route('sources.store', $project), [
+            'kind' => 'text', 'original' => $text, 'priority' => 'Should',
+        ])->assertRedirect();
+
+        $this->post(route('analysis.store', $project))->assertRedirect();
+
+        $finding = $project->analyses()->latest('id')->firstOrFail()->results['classification']['items'][0];
+        $this->assertSame($category, $finding['category']);
+        $this->assertSame('AI Inferred', $finding['provenance']);
+        $this->assertSame([$text], $finding['statements']);
+        $this->assertFalse($project->refresh()->isApproved());
+        Http::assertNothingSent();
+    }
 }

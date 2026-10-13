@@ -3,12 +3,14 @@
 
 **Organization:** Codly India Private Limited
 **Author:** Astarag Diasi
-**Report date:** 12 October 2026
+**Report date:** 13 October 2026
 **Status:** Draft for factual review and supervisor approval
 
 > This report describes the current inspected implementation and recorded test evidence. It does not claim that live AI integration, complete end-to-end document-upload behaviour, production deployment or business impact has been demonstrated. PDF/DOCX text extraction is implemented for supported, readable documents; scanned/image-only PDFs and OCR remain unsupported. The latest end-to-end upload/analysis verification is still pending. Chapter 2 deliberately distinguishes confirmed project information from Codly's internal process, which must be confirmed by the supervisor.
 
 # Chapter 1 — Introduction
+
+The authoritative local handoff is missing. This report remains DRAFT and does not establish Codly acceptance.
 
 Business requirements may arrive as short messages, notes, structured descriptions or incomplete statements. Turning these inputs into a clear scope requires identifying what is known, what remains unanswered, and which assumptions require confirmation.
 
@@ -18,13 +20,17 @@ The implementation reviewed for this draft uses Laravel, PHP and MySQL. Its curr
 
 # Chapter 2 — Existing Process
 
-The approved project specification describes the intended problem area but does not, by itself, establish every detail of Codly's existing internal requirement-analysis process. No unverified claim about current departments, tools, approval chains, turnaround times or defect rates is made in this report.
+Company intake channels, authority roles and process metrics require supervisor confirmation; no organizational baseline is invented.
+
+An approved project specification was not found in this checkout. The task brief describes the intended problem area but does not establish Codly's actual internal process. No unverified claim about current departments, tools, approval chains, turnaround times or defect rates is made in this report.
 
 Before final submission, the supervisor should confirm the actual intake channels, stakeholder roles, current documentation practices, review stages, recurring issues and approval responsibilities. The report should record those confirmed facts and identify the source of each material statement.
 
-Until that confirmation is obtained, the project is evaluated against the approved requirements and its implemented workflow rather than an invented description of company operations.
+Until the specification and process facts are supplied, this draft compares the implementation with the operator’s task brief and explicitly records coverage gaps.
 
 # Chapter 3 — Problem Identification
+
+There is no measured before/after productivity or performance baseline. Structural validation cannot prove semantic truth.
 
 Incomplete or ambiguous requirements can leave important questions unresolved. Contradictory statements can cause scope confusion, while unsupported assumptions can be mistaken for client-confirmed decisions. Changes after approval can also make an earlier decision obsolete.
 
@@ -33,6 +39,8 @@ The project addresses these risks through source records, structured findings, p
 Quantified claims about time saved, defect reduction, cost savings or productivity improvements require a separate measured comparison and are not asserted here.
 
 # Chapter 4 — Proposed Solution
+
+The current task adds candidate categories and richer draft fields while retaining human decisions and exact-revision gates; runtime verification is blocked.
 
 The proposed workflow is:
 
@@ -48,6 +56,8 @@ The proposed workflow is:
 The current implementation provides a deterministic demo for the analysis stage. Integrating a live AI provider requires explicit Codly authorization and approved credentials. Pricing, delivery estimates, scope and external commitments must remain subject to human approval.
 
 # Chapter 5 — Technology
+
+Installed metadata lists Laravel 13.35.0, PHPWord 1.1.0, pdfparser 2.12.5, PHPUnit 12.5.38 and Pint 1.32.1. Composer show was unavailable because compatible PHP is inaccessible. Historical MySQL/PHP environment records were not freshly verified.
 
 ## Implemented technology
 
@@ -67,6 +77,8 @@ A future live integration should compare approved services against authorized se
 
 # Chapter 6 — System Design
 
+Document intake uses temporary upload paths and stores normalized text plus filename/format; original binaries, page locations and exact document layout are not retained. No schema changes or real-data migrations were made.
+
 The application is organized around controllers, request validation, policies, analysis services, models, revision management and Blade views.
 
 Project access distinguishes the owner from an assigned reviewer. Owner-only project-context changes and reviewer-only decision actions are enforced through authorization checks. Revision-sensitive operations lock the project record within a transaction, compare the submitted revision with the current revision, and reject stale requests.
@@ -77,6 +89,8 @@ Sensitive operational details should not be included in audit messages or user-f
 
 # Chapter 7 — Implementation
 
+This run adds DOCX table traversal, archive structure/expanded-size checks, content MIME validation, five candidate categories with reviewer correction, displayed Must Have/Should Have/Could Have/Future labels, source-linked scope groups, and human-entered draft payment/support terms. These additions await behavioral tests.
+
 The inspected implementation includes:
 
 - Project creation, listing, viewing and owner-controlled context updates.
@@ -85,12 +99,14 @@ The inspected implementation includes:
 - Reviewable findings, source provenance and scope classification.
 - Reviewer assignment and reviewer-specific authorization.
 - Revision advancement, approval decisions and audit records.
-- Proposal drafting with human-entered effort, price, currency, maintenance terms, third-party costs and client responsibilities.
+- A proposal-drafting workflow for human-entered effort, price, currency, maintenance terms, third-party costs and client responsibilities; drafting remains gated on approval of the current scope.
 - Tests covering malformed analysis output, conflicts, provenance, stale revisions, authorization and confidential-content handling.
 
 PDF/DOCX text extraction is implemented for supported, readable documents. Scanned or image-only PDFs and OCR remain unsupported, as do the other excluded media inputs. End-to-end upload verification remains outstanding. The current code must not be described as a fully integrated live AI platform.
 
 # Chapter 8 — AI Methodology
+
+Codex/OpenAI assisted engineering, review, regression design and documentation. Humans remain responsible for review, retained changes and commits. See [AI assistance disclosure](AI_USAGE_DISCLOSURE.md). Prompt registry ai-v1 is unchanged; demo-v1 remains a heuristic contract identifier, not a trained model. No live call or training occurred.
 
 The current provider is a deterministic keyword/heuristic implementation. Its outputs are generated demo suggestions, not the results of a live language model. Its behavior can be predictable for known patterns but can miss context, produce incomplete findings or misclassify unfamiliar wording.
 
@@ -102,23 +118,19 @@ Any future live AI integration must use only Codly-approved services and credent
 
 # Chapter 9 — Testing
 
-A prior local run reported **46 tests passed and 283 assertions** in approximately 2.80 seconds. The first CI run for this acceptance-hardening branch reported 52 passed and 6 failed: five failures came from the missing Vite manifest during view rendering, and one came from DOCX MIME validation. After correcting the CI asset-build sequence and document-extension validation, the subsequent GitHub Actions run passed **58 tests with 325 assertions** in approximately 2.52 seconds. The frontend build job also passed. The successful test run corresponds to the application-code commit before later documentation-only edits.
+The operator supplied a historical baseline of **58 passing tests and 325 assertions**, plus a passing frontend build. This is historical evidence, not a current-checkout pass. Older conflicting counts in the local draft have been superseded by that baseline; no CI job or fresh suite was independently verified here.
 
-Recorded test coverage includes:
+On 2026-10-13, `npm run build` succeeded with Vite 8.3.4; it warned that optional font optimization requires fontaine. No dependency was installed. PHP 8.2 syntax checks passed for eight changed PHP files. This verifies syntax only. The targeted Laravel command and required Pint command failed before execution because the accessible PHP binary is 8.2.12; installed application dependencies require >=8.4.1. The running PHP 8.5 executable is inaccessible under current permissions.
 
-- Malformed or unsupported structured analysis output.
-- Analysis scenarios and conflicting sources.
-- Provenance and evidence validation.
-- Stale proposal submission and proposals without current approval.
-- Unauthorized or unassigned reviewer access.
-- Empty, oversized and unsupported source submissions; PDF/DOCX upload validation is still subject to the latest CI rerun and manual acceptance.
-- Explicit client confirmation and changed confirmed content.
-- Confidential content escaping and bounded failure handling.
-- Revision history, stale forms, login/logout and database failure handling.
+New fictional `DocumentWorkflowTest` cases cover readable PDF and DOCX tables through intake, analysis, changes-requested/reject/approve fixture decisions, draft generation and stale revision rejection. Failure fixtures cover malformed formats, textless PDF, an encryption-marker PDF, oversized upload, extracted-text limit, generic ZIP, expanded-archive limit and cross-project upload refusal. These cases are **prepared, NOT TESTED**; they establish no current behavioral pass. The encryption fixture is synthetic, not representative acceptance of real encrypted PDFs or scanned documents.
 
-These results are evidence for the exercised tests only. They are not proof of complete feature coverage, production readiness or correct results for every possible requirement. The final submission should preserve the actual test output and document failures, limitations and any additional manual tests performed.
+Five category regressions were added to `AnalysisScenariosTest`. Existing scenario tests cover complete, short, ambiguous, contradictory, multiple-role, payment, sensitive-data, unrealistic and scope-change inputs; existing workflow tests cover invalid provider output, bounded retry and safe provider failure. Their recorded baseline does not establish quality scores or a new pass after these changes.
+
+Browser automation found no connected surfaces and no available in-app browser. Owner/reviewer UI, anti-CSRF behavior, PDF/DOCX browser uploads and rendering remain NOT TESTED in this run. Human ratings and supervisor sign-off remain blank. See [commands, results and browser steps](FINAL_EXECUTION_STATUS.md).
 
 # Chapter 10 — Limitations
+
+Detailed business-type/outcome modeling, user journeys, database-entity design and specific integration plans are incomplete in the demo. Confidential source text is retained and may appear as authorized evidence; there is no comprehensive automatic credential redaction guarantee. DOCX headers, footers, text boxes and document layout need representative verification.
 
 The current analysis provider is deterministic rather than a live LLM. Its heuristic approach cannot provide general semantic understanding and must not be presented as equivalent to a production AI service.
 
@@ -127,6 +139,8 @@ Readable PDF/DOCX text extraction and a document-upload workflow are implemented
 The current test suite does not establish production deployment security, performance under load, backup recovery, availability or complete acceptance of every official requirement. The current application should be treated as a development/demo system until these areas are evaluated.
 
 # Chapter 11 — Future Scope
+
+The next engineering step is focused tests and Pint on an accessible compatible runtime, followed by document/browser acceptance. Broader design output improvements require scope reconciliation and human evaluation; no improvement score is claimed.
 
 Potential future work, subject to supervisor approval, includes:
 
@@ -141,8 +155,18 @@ These items are proposals, not claims about existing functionality. Any external
 
 # Chapter 12 — Conclusion
 
-The inspected implementation demonstrates a Laravel-based requirement-analysis workspace with structured intake, deterministic analysis, validation, provenance handling, revision-sensitive review, approval records and provisional proposal generation. PDF/DOCX text extraction is implemented. The successful GitHub Actions run passed 58 tests with 325 assertions, and the frontend build passed. These checks support a development/demo milestone, not production readiness or completed human evaluation.
+No new local commit or push occurred: the four mandated identity environment variables were absent and Git index writes were denied. Live provider access, client-data transfer, public release and deployment require written Codly authorization; only authorized humans can approve commitments or sign this DRAFT.
+
+The inspected implementation demonstrates a Laravel-based requirement-analysis workspace with structured intake, deterministic analysis, validation, provenance handling, revision-sensitive review, approval records and a proposal-drafting workflow gated on approval of the current scope. PDF/DOCX text extraction is implemented. The operator’s historical baseline is 58 tests with 325 assertions. This run passed the frontend build and syntax checks, but Laravel tests and Pint are blocked. These checks support a development/demo milestone, not production readiness or completed human evaluation.
 
 The evidence supports a development/demo milestone, not a claim of complete acceptance or production readiness. Live AI integration, end-to-end document-upload verification, completed human evaluation results, company-process confirmation and final deployment review remain outstanding or require additional evidence.
 
 Before submission, the author and supervisor should review the acceptance matrix, confirm company-specific facts, inspect the final repository and configuration, verify all reported test results, and approve any outstanding scope exclusions.
+## Evidence references
+
+- [Acceptance matrix](acceptance-matrix.md) and [current execution record](FINAL_EXECUTION_STATUS.md)
+- [Fictional evaluation cases](evaluation-cases.md) and [blank human evaluation sheet](human-evaluation-sheet.md)
+- [Analysis contract validator](../app/AnalysisValidator.php), [revision-bound review](../app/Http/Controllers/ArtifactController.php), [draft builder](../app/ProposalBuilder.php)
+- [Prepared document regressions](../tests/Feature/DocumentWorkflowTest.php) and [scenario regressions](../tests/Feature/AnalysisScenariosTest.php)
+
+Supervisor decision/signature/date: **Pending — must be entered by the authorized human.**
