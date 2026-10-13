@@ -67,16 +67,20 @@ categories:
 | EVAL-02 | Short or underspecified brief | Missing information |
 | EVAL-03 | Conflicting source statements | Conflict detection and evidence preservation |
 | EVAL-04 | Ambiguous wording | Explicit uncertainty and clarification questions |
-| EVAL-05 | Functional requirements | Correct classification and scope |
-| EVAL-06 | Non-functional requirements | Quality attributes and measurable criteria |
-| EVAL-07 | Multiple user roles | Role and permission distinctions |
-| EVAL-08 | Payment or commercial requirements | No invented prices or commitments |
-| EVAL-09 | Sensitive information in source text | Appropriate data minimisation and handling |
-| EVAL-10 | Unrealistic or unsupported estimates | Uncertainty and human review |
+| EVAL-05 | Explicit non-functional requirement | Preserve performance criteria |
+| EVAL-06 | Multiple roles and access | Role and permission distinctions |
+| EVAL-07 | Commercial terms absent | No invented prices or commitments |
+| EVAL-08 | Sensitive data appears in source | Appropriate data minimisation and handling |
+| EVAL-09 | Unsupported estimate request | Uncertainty and human review |
+| EVAL-10 | Missing integration details | Specific questions without fabricated APIs |
 | EVAL-11 | Scope change after review | Revision consistency and stale approval handling |
 | EVAL-12 | Malformed provider output | Validation and bounded retry |
 | EVAL-13 | Edited requirement after approval | Revision-specific approval integrity |
 | EVAL-14 | Unsupported or unavailable information | No fabricated facts or source references |
+| EVAL-15 | Readable PDF and DOCX table intake | Extraction, provenance and revision-bound draft |
+| EVAL-16 | Document failures and unsupported content | Safe refusal and explicit OCR limits |
+
+Case IDs above align with dataset version 1.1 in `evaluation-cases.md`; the earlier plan's IDs 05–10 differed and have been reconciled. Ratings remain blank. Automated fixture outcomes are recorded separately in `FINAL_EXECUTION_STATUS.md`.
 
 For each scenario, record a unique identifier, input, independently prepared
 expected findings, expected evidence references, expected classification where

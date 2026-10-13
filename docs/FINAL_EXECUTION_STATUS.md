@@ -1,5 +1,33 @@
 # Final Execution Status — DRAFT
 
+## Latest finishing pass — 13 October 2026 (Asia/Calcutta)
+
+This section supersedes earlier current-state claims below; all earlier records remain historical evidence. Continued the existing application without dependency changes, database migrations, live AI calls or conversation-history deletion.
+
+| Check | Actual result |
+|---|---|
+| Starting worktree | DONE: clean `main`, HEAD `9dbf973822b05388fe6066ac9a3fafe22ec81cd0`; existing backup `backup/codly-before-handoff-20261013-150202` retained. |
+| Reconciliation | DONE: existing normal merge preserves remote `cede731b9d8699588c1d6f64cf20a881f576ab1a`, local `b6ccaf1b923e859e574eee2559f4059672ca6217` and `60a9cf8bf4c5798aacb6fe0ba0dc54ceb6441f44`; each ancestry check exit 0; PROJECT_HANDOFF retained. No second merge needed. |
+| Release gate verification | DONE: actual FIXED script run without publish switch, exit 0; log `Codly-Release-Gate-20261013-161241/readiness-summary.txt` under the operator's LocalAppData. Initial sandbox fetch was denied; approved host execution succeeded. Process-only ExecutionPolicy Bypass ran the supplied script without changing persistent policy. |
+| Authorized publication | DONE: user reports Codly authorization for this public repository; supported `-PublishWithCodlyApproval` mode, exact terminal confirmation, normal non-force push, exit 0. Log `Codly-Release-Gate-20261013-161451/readiness-summary.txt`. Independent `git ls-remote` matched code SHA `9dbf973822b05388fe6066ac9a3fafe22ec81cd0`. Final documentation publication is recorded below when verified. |
+| GitHub display | DONE: public repository, default branch `main`; GitHub README contents matched local after code publication. |
+| Privacy review | DONE within stated scope: tracked-path inspection excludes real .env, keys, databases, logs, vendor, node_modules, uploads and confidential source documents. High-confidence credential patterns: zero matches across tracked files and eight preserved commit snapshots. Safe example configuration and fictional fixtures inspected. This is not a comprehensive security certification. Official source documents remain outside the public repository. |
+| Current local automated suite | DONE: PHP 8.5.0, Laravel 13.35.0; `php artisan test --compact`, 75 passed / 507 assertions / one deprecation, exit 0, on code SHA `9dbf9738`. Isolated SQLite `:memory:` configured by phpunit.xml; no real-data migrations. Fresh count is retained exactly as emitted, separately from historical 74/507. |
+| Focused extractor diagnostic | DONE: 5 passed / 8 assertions / one deprecation, exit 0, using supported `--display-deprecations --display-phpunit-deprecations`. PHPWord 1.1.0 `vendor/phpoffice/phpword/src/PhpWord/Style.php:180`: `Using null as an array offset is deprecated, use an empty string instead`. Known/non-failing; earlier pdfparser hypothesis was not the reproduced warning. No suppression, vendor modification or dependency change. |
+| Formatting and assets | DONE: `php vendor/bin/pint --format agent` passed, exit 0, no source diff; Vite 8.3.4 build passed, exit 0. Optional fontaine warning retained; no package added. |
+| Browser acceptance | NOT TESTED: current computer-use inventory returned `apps: []`, `browsers: []`. Login, new project, text intake, findings/questions/conflicts/provenance, readable PDF, DOCX tables, owner/reviewer authorization, stale revision and proposal gating not executed in a browser. No screenshots fabricated and no localhost exposure. HTTP fixtures passed within automated scope only. |
+| Official scope | DONE: full official DOCX text (sections 1–63) and four-page master compliance plan read from Downloads. Specification requires Codly-provided AI access and actual human quality review; optional OCR/future media do not block core MVP. Semantic completeness, useful planning and company process facts still require human validation. See acceptance mapping. |
+| GitHub CI | FAILED at code SHA `9dbf9738`: frontend-build succeeded; test job failed at `Run Laravel test suite`. Detailed diagnosis/final disposition will be recorded below. Local success does not override CI failure. |
+| Submission | DONE: manifest prepared; report keeps all 12 chapters and DRAFT status. Actual portal submission NOT TESTED: no portal URL/session supplied or connected browser. No deployment URL fabricated. |
+| Company decisions | BLOCKED: Codly team quality evaluation, company-process factual confirmation/report approval and authorized live AI provider/model/credentials/data handling. No scores, signatures, commercial promises or production acceptance invented. |
+| Codex history | CLEANUP DEFERRED: all history preserved. Submission/company disposition and additional explicit deletion approval remain prerequisites. No history inventory or deletion performed. |
+
+### Historical result boundaries
+
+58 tests / 325 assertions: earlier reported baseline before later documentation edits, exact run timestamp not established. Checkpoint `b6ccaf1`: reported 72 pass, one failure, 479 assertions. Corrective `60a9cf8`: operator-reported 74 pass / 507 assertions, one deprecation, Pint 73 files and build pass on 13 October 2026. Fresh run at merge `9dbf9738`: tool-reported 75 pass / 507 assertions; counts are not combined or silently normalized.
+
+## Preserved earlier execution records
+
 **Current pass:** 13 October 2026, Asia/Calcutta. **Starting HEAD:** b6ccaf1b923e859e574eee2559f4059672ca6217 (human checkpoint). Final ref recheck recorded below. No staging, commit, push, history rewrite, dependency change, migration, real-data write, personal credentials or live AI calls in this pass.
 
 ## New evidence and focused fixes

@@ -1,5 +1,11 @@
 # AI Assistance Disclosure
 
+## Latest finishing qualification — 13 October 2026
+
+Codex assisted verification, CI diagnosis and documentation reconciliation. User-reported Codly authorization allowed public GitHub publication; the normal merge/push preserved all historical authors and commits. Fresh PHP 8.5 local tests reported 75 pass / 507 assertions and one non-failing PHPWord deprecation; Pint/build passed. Browser and human acceptance remain unverified. Earlier execution statements below are historical, superseded by [current evidence](FINAL_EXECUTION_STATUS.md). Existing GitHub credential use was separately authorized for scoped CI-log reading; no credential was printed or included in submission files.
+
+No live AI integration, training, personal AI key/account, confidential client upload, real-data migration, deployment or Codex-history deletion occurred. Publication permission does not authorize those actions or business decisions. The report remains DRAFT pending Codly review.
+
 This Codly AI Requirement Analyzer project has used OpenAI Codex as an
 AI-assisted development tool for implementation support, review, tests,
 and documentation. AI-assisted output requires independent human review,

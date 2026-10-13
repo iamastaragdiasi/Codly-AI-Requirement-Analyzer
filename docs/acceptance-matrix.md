@@ -3,6 +3,36 @@
 **Organization:** Codly India Private Limited
 **Evidence snapshot:** 13 October 2026
 
+## Latest finishing qualification
+
+Supersedes earlier runtime, absent-handoff and publication blockers below while preserving their historical context. Code SHA `9dbf973822b05388fe6066ac9a3fafe22ec81cd0` was normally pushed and independently verified. Fresh local suite: 75 pass / 507 assertions, one PHPWord deprecation; Pint/build passed. GitHub CI test failure is tracked in [execution status](FINAL_EXECUTION_STATUS.md). Automated evidence is not browser or human acceptance.
+
+| Acceptance scope | Current result | Evidence / remaining action |
+|---|---|---|
+| AC-13, AC-15, AC-23: draft controls, readable PDF/DOCX tables, refusal cases | Verified in HTTP/unit fixtures | Fresh existing DocumentWorkflowTest and DocumentExtractorTest included in suite; negative fixtures are synthetic, not representative encrypted/scanned browser acceptance. |
+| AC-24: categories, priority and review correction | Verified in automated scope | AnalysisScenariosTest and revision/security fixtures; human semantic quality pending. |
+| AC-20, AC-27: commit identity/publication | Verified for code publication | Normal merge/push, all required ancestors, matching human identity; final documentation SHA recorded in execution status. |
+| AC-26: official scope and handoff | Verified by inspection | Full official specification and master plan read locally; remote handoff preserved. Documents not republished. |
+| AC-25: detailed semantic design | Partial demo, not complete semantic capability | Source-specific scope/planning, candidate entities/integration questions and journey notes exist; comprehensive business/outcome/relationship design and practical correctness unverified. |
+| AC-14, AC-17, AC-18, AC-28 | Blocked by Codly | Approved live AI access, actual human ratings, company facts and supervisor/final business decisions remain pending. |
+| All required browser journeys | NOT VERIFIED | No connected browser: login, project creation, text, findings/questions/conflicts/provenance, PDF, DOCX tables, authorization, revision invalidation and proposal gate not executed. Same for malformed/unsupported content and unassigned reviewer browser cases. |
+| Actual internship portal submission | NOT VERIFIED | No portal URL/session available; manifest is preparation, not submission. |
+
+### Official specification and master-plan mapping
+
+| Official sections | Implemented evidence / disposition |
+|---|---|
+| 1–6, 41–44: intake and workflow | Laravel project/source flow; text/structured/readable PDF/DOCX fixtures. Browser acceptance pending; OCR optional per §42; voice/images/URL intake future scope. |
+| 7–12, 31–34: intelligence and provenance | Five categories, four priorities, missing questions, conflicts and validated contracts tested; DEMO heuristics are not general LLM quality. |
+| 13–23: planning, dependencies, scope | Candidate journeys/screens/entities/security, source-linked modules/tasks/phases/scope. Technical usefulness and comprehensive modeling require human review. |
+| 24–26, 45: proposals and approvals | Nonbinding drafts, human commercial fields, exact-revision review and invalidation exercised in fictional fixtures; no real final proposal approval. |
+| 27–29, 46–50: access/privacy/stack | DEMO retained, no personal API/account or training; policy/validation/security regressions. Public publication authorized by user report; production audit remains separate. |
+| 30, 35–40: prompts and evaluation | Modular ai-v1 prompts, fictional dataset 1.1 / EVAL-01–16, automated results; human quality ratings blank. |
+| 51–53: milestones and deliverables | Source/config/migrations, README architecture/setup/user flow, prompt/evaluation docs, 12-chapter draft and submission manifest; no historical milestone completion dates invented. |
+| 54–63: future scope, evaluation and success | Future extensions documented; no training required. Live AI application, measured quality/value and Codly acceptance not established by DEMO tests. |
+
+Master-plan phases 0–8 align with the same implementation, provenance, human-control and disclosure boundaries. Its recorded PHP 8.4.25 baseline and this pass's PHP 8.5.0 describe different environments; neither changes the other's historical record.
+
 ## Status definitions
 
 - **Verified:** Supported only within the stated evidence scope (inspection, historical test or recorded observation); it does not mean current complete acceptance.

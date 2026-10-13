@@ -35,10 +35,13 @@ class DocumentWorkflowTest extends TestCase
         $path = $this->documentPath($format, $text);
 
         try {
-            $this->actingAs($owner)->post(route('sources.store', $project), [
+            $file = new UploadedFile($path, 'fictional-requirements.'.$format, null, null, true);
+            $response = $this->actingAs($owner)->post(route('sources.store', $project), [
                 'kind' => 'document', 'priority' => 'Must',
-                'file' => new UploadedFile($path, 'fictional-requirements.'.$format, null, null, true),
-            ])->assertRedirect(route('projects.show', $project));
+                'file' => $file,
+            ]);
+            $this->assertFalse(session()->has('errors'), 'Readable document rejected; detected MIME type: '.$file->getMimeType());
+            $response->assertRedirect(route('projects.show', $project));
             $source = $project->sources()->firstOrFail();
             $this->assertSame($text, $source->original);
             $this->assertSame($format, $source->metadata['document_format']);

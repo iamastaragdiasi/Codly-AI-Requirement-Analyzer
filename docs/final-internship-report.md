@@ -10,7 +10,7 @@
 
 # Chapter 1 — Introduction
 
-The Codly specification remains authoritative. Approved local specification/handoff evidence is still missing; preserved prior execution records are historical. This report remains DRAFT and actual Codly evaluation/approval is PENDING CODLY.
+The official Codly specification (sections 1–63) and master implementation/compliance plan were read from the supplied Downloads files on 13 October 2026; the remote project handoff is now preserved locally. They define the expected workflow, not evidence of completed implementation. This report remains DRAFT and actual Codly evaluation/approval is PENDING CODLY.
 
 Business requirements may arrive as short messages, notes, structured descriptions or incomplete statements. Turning these inputs into a clear scope requires identifying what is known, what remains unanswered, and which assumptions require confirmation.
 
@@ -22,11 +22,11 @@ The implementation reviewed for this draft uses Laravel, PHP and MySQL. Its curr
 
 Company intake channels, authority roles and process metrics require supervisor confirmation; no organizational baseline is invented.
 
-An approved project specification was not found in this checkout. The task brief describes the intended problem area but does not establish Codly's actual internal process. No unverified claim about current departments, tools, approval chains, turnaround times or defect rates is made in this report.
+The supplied official specification describes intake through messages, emails, documents, notes and other channels. Its target workflow does not establish measured current departments, tools, approval chains, turnaround times or defect rates. Those company-specific facts require supervisor confirmation.
 
 Before final submission, the supervisor should confirm the actual intake channels, stakeholder roles, current documentation practices, review stages, recurring issues and approval responsibilities. The report should record those confirmed facts and identify the source of each material statement.
 
-Until the specification and process facts are supplied, this draft compares the implementation with the operator’s task brief and records coverage gaps. Self-service completion does not authorize inventing company process facts.
+The acceptance matrix maps the inspected implementation to the official specification and master plan while retaining coverage gaps. Company process facts and measured impact must not be invented.
 
 # Chapter 3 — Problem Identification
 
@@ -40,7 +40,7 @@ Quantified claims about time saved, defect reduction, cost savings or productivi
 
 # Chapter 4 — Proposed Solution
 
-The current pass makes DEMO scope, requirement titles, missing questions and planning outputs source-specific within the existing contract. Human decisions and exact-revision gates remain. Post-edit runtime verification is pending the parent process.
+The corrective implementation makes DEMO scope, requirement titles, missing questions and planning outputs source-specific within the existing contract. Human decisions and exact-revision gates remain. The fresh local suite at merge `9dbf9738` passed; Linux CI exposed two DOCX MIME validation failures, recorded separately in the execution status.
 
 The proposed workflow is:
 
@@ -57,7 +57,7 @@ The current implementation provides a deterministic demo for the analysis stage.
 
 # Chapter 5 — Technology
 
-Installed metadata/Boost lists Laravel 13.35.0, PHPWord 1.1.0, pdfparser 2.12.5, PHPUnit 12.5.38 and Pint 1.32.1. This pass confirmed response authorization against installed Laravel source and Boost documentation. Shell startup failed; historical MySQL/PHP environment records were not freshly verified.
+Fresh `composer show --direct` confirmed Laravel 13.35.0, PHPWord 1.1.0, pdfparser 2.12.5, PHPUnit 12.5.38 and Pint 1.32.1. The working CLI reported PHP 8.5.0; CI uses PHP 8.4. MySQL 8.0.46 remains a historical local environment record, not a new database verification. No dependency changes or real-data migrations were performed.
 
 ## Implemented technology
 
@@ -89,7 +89,7 @@ Sensitive operational details should not be included in audit messages or user-f
 
 # Chapter 7 — Implementation
 
-Checkpoint b6ccaf1 already includes DOCX table traversal, archive/content checks, categories, priority labels, scope groups and draft payment/support fields. This pass fixes the source authorization status loss and adds source-specific DEMO scope candidates, descriptive categorized requirements, missing questions, candidate entities/integration review, journey notes and three-stage task dependencies/phase gates. Post-edit regressions await execution.
+Checkpoint b6ccaf1 includes DOCX table traversal, archive/content checks, categories, priority labels, scope groups and draft payment/support fields. Corrective commit 60a9cf8 preserves policy denial status and adds source-specific DEMO planning and questions. The merge retains both development commits and the remote handoff; fresh local regressions passed. Browser verification and semantic quality remain separate.
 
 The inspected implementation includes:
 
@@ -120,11 +120,11 @@ Any future live AI integration must use only Codly-approved services and credent
 
 The operator supplied the first full checkpoint-b6ccaf1 result: **72 PASS, one failure, 479 assertions and one deprecation**. The failure expected 404 for an unassigned document uploader but received 403. The established policy hides inaccessible projects; the source Form Request lost that status by converting the response to a boolean. This pass preserves the policy response and retains the 404 test expectation with no-source/no-audit/no-artifact/unchanged-revision assertions.
 
-The other 72 checkpoint cases previously passed; they are not post-edit evidence. Pint reported 15 style issues across 73 files; parent auto-fix and verification are pending. This pass’s shell failed before startup, so no fresh Laravel test, syntax, build or Pint result is claimed. Earlier build/syntax results remain historical in the preserved execution record.
+Historical baseline: 58 tests / 325 assertions; checkpoint b6ccaf1: 72 pass, one failure, 479 assertions; corrective 60a9cf8: operator-reported 74 pass / 507 assertions, one deprecation, Pint 73 files and Vite build pass. Fresh finishing run at merge 9dbf9738: tool-reported 75 pass / 507 assertions, one deprecation, exit 0. Fresh Pint formatting passed without source changes and Vite 8.3.4 build passed. These runs have distinct scopes and are retained in the execution record; no semantic quality score follows from their counts.
 
 A focused fictional planning regression checks source-specific classification, unanswered payment-provider questions, candidate entities, task dependencies, priority, evidence and lack of approval. Existing document workflow fixtures exercise readable PDF/DOCX tables, rejection/changes-requested/approval and nonbinding revision-bound drafts in an isolated test database. Those fixture approvals are not human acceptance.
 
-Deprecation inspection located smalot/pdfparser Font::uchr calling mb_convert_encoding with deprecated HTML-ENTITIES encoding at vendor source line 150. The reported single warning’s exact runtime stack is unavailable. Parent must run DocumentExtractorTest with --display-deprecations and --display-phpunit-deprecations to confirm origin; no vendor edit, suppression or unapproved dependency change was made.
+The focused DocumentExtractorTest diagnostic passed 5 tests / 8 assertions and reproduced the non-failing warning in PHPWord 1.1.0 Style.php:180: “Using null as an array offset is deprecated, use an empty string instead.” The earlier pdfparser inspection hypothesis was not the reproduced cause. No vendor edit, suppression or dependency change was made. GitHub CI at merge 9dbf9738 had 73 passing tests and two DOCX upload MIME failures (471 assertions); final diagnosis/disposition is in the execution status.
 
 Browser inventory returned no connected apps/browsers: browser checks are **NOT TESTED**. Feature HTTP tests do not prove browser rendering, uploads, anti-CSRF or usability. Human evaluation is **PENDING CODLY**, with no ratings or supervisor signature. See [pending verification and manual steps](FINAL_EXECUTION_STATUS.md).
 
@@ -140,7 +140,7 @@ The current test suite does not establish production deployment security, perfor
 
 # Chapter 11 — Future Scope
 
-The parent process must run focused regressions, final tests/Pint and the exact deprecation diagnostic, then append results. Manual/browser acceptance and official scope reconciliation remain. No semantic improvement score is claimed. Live AI integration is BLOCKED and actual reviewer evaluation is PENDING CODLY; both are deliberately excluded from self-service work while retained in governance.
+Fresh local regressions, formatting/build and deprecation diagnostics are recorded. Manual/browser acceptance remains unavailable in the connected tool environment; CI document portability diagnosis is tracked in the execution status. No semantic improvement score is claimed. Live AI integration is BLOCKED and actual reviewer evaluation is PENDING CODLY.
 
 Potential future work, subject to supervisor approval, includes:
 
@@ -155,9 +155,9 @@ These items are proposals, not claims about existing functionality. Any external
 
 # Chapter 12 — Conclusion
 
-This pass did not stage, commit, push or rewrite history, as instructed. Starting HEAD is human checkpoint b6ccaf1; the parent operator will verify and commit. Live provider access, client-data transfer, public release and deployment require Codly authorization; only authorized humans can approve commitments or sign this DRAFT.
+The finishing pass continued from clean merge 9dbf9738 and published it by normal non-force push under user-reported Codly authorization. Both local development commits and the remote handoff remain in history. Public publication does not authorize live provider access, client-data transfer or deployment; only authorized humans can approve commitments or sign this DRAFT. Codex history remains intact.
 
-The inspected implementation demonstrates a Laravel-based requirement-analysis workspace with structured intake, deterministic analysis, validation, provenance handling, revision-sensitive review, approval records and a proposal-drafting workflow gated on approval of the current scope. PDF/DOCX text extraction is implemented. The operator’s checkpoint evidence is 72 passing tests, one failure, 479 assertions and one deprecation. The known denial-status fix and semantic regressions await parent verification; no post-edit suite or Pint pass is claimed. These checks support a development/demo milestone, not production readiness or completed human evaluation.
+The inspected implementation demonstrates a Laravel workspace with structured intake, deterministic analysis, validation, provenance, revision-sensitive review and gated proposal drafts. Readable PDF/DOCX extraction is implemented. Fresh local evidence is 75 pass / 507 assertions with one PHPWord deprecation and passing Pint/build; CI and browser qualifications are preserved in the execution status. This supports a development/demo milestone, not production readiness or completed human evaluation.
 
 The evidence supports a development/demo milestone, not a claim of complete acceptance or production readiness. Live AI integration, end-to-end document-upload verification, completed human evaluation results, company-process confirmation and final deployment review remain outstanding or require additional evidence.
 

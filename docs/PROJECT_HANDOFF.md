@@ -1,5 +1,7 @@
 # Project Handoff — Codly AI Requirement Analyzer
 
+**Current continuation note (13 October 2026):** This handoff is preserved as a historical remote record. The normal merge at `9dbf973822b05388fe6066ac9a3fafe22ec81cd0` retained it and both later local development commits, then was published with user-reported Codly authorization. Use [latest execution status](FINAL_EXECUTION_STATUS.md), [acceptance matrix](acceptance-matrix.md) and [submission manifest](SUBMISSION_MANIFEST.md) for current results and blockers. Earlier uncommitted-file, test and permission statements below describe the earlier state.
+
 **Prepared:** 13 October 2026  
 **Repository:** https://github.com/iamastaragdiasi/Codly-AI-Requirement-Analyzer  
 **Default branch:** `main`  
