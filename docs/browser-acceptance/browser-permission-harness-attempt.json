@@ -1,0 +1,178 @@
+{
+  "application_sha": "a22ecb1d3a8a9959a49f9a353d12c2be7352d3ba",
+  "date": "2026-10-13T11:56:23.786Z",
+  "browser": "Installed Google Chrome, Playwright 1.64.0, headless",
+  "isolation": "Fresh temporary SQLite database and storage; three fictional accounts; DEMO driver; loopback only",
+  "results": [
+    {
+      "id": 1,
+      "name": "Application loads",
+      "status": "PASS",
+      "detail": "Installed Chrome 155.0.8059.40 loaded the real loopback Laravel login page."
+    },
+    {
+      "id": 2,
+      "name": "Login and logout",
+      "status": "PASS",
+      "detail": "Fictional owner authenticated, signed out and authenticated again in Chrome."
+    },
+    {
+      "id": 3,
+      "name": "Project creation",
+      "status": "PASS",
+      "detail": "Project created through the browser form; project ID 1."
+    },
+    {
+      "id": 4,
+      "name": "Text requirement submission",
+      "status": "PASS",
+      "detail": "Five fictional text sources persisted through UI submission."
+    },
+    {
+      "id": 5,
+      "name": "Readable PDF upload/extraction",
+      "status": "PASS",
+      "detail": "Readable PDF uploaded and extracted original text/format displayed."
+    },
+    {
+      "id": 6,
+      "name": "DOCX table upload/extraction",
+      "status": "PASS",
+      "detail": "DOCX paragraph and table-cell text persisted with unconfirmed document metadata."
+    },
+    {
+      "id": 7,
+      "name": "Analysis execution",
+      "status": "PASS",
+      "detail": "DEMO analysis completed through UI with all module sections present."
+    },
+    {
+      "id": 8,
+      "name": "Functional/non-functional classification",
+      "status": "PASS",
+      "detail": "Functional and Non-Functional candidate categories displayed."
+    },
+    {
+      "id": 9,
+      "name": "Requirement priorities displayed",
+      "status": "PASS",
+      "detail": "Must Have and Should Have labels preserve submitted priority."
+    },
+    {
+      "id": 10,
+      "name": "Missing information identified",
+      "status": "PASS",
+      "detail": "Missing-provenance findings displayed for underspecified inputs."
+    },
+    {
+      "id": 11,
+      "name": "Clarification questions shown",
+      "status": "PASS",
+      "detail": "Concrete payment/general clarification questions displayed; answers not invented."
+    },
+    {
+      "id": 12,
+      "name": "Ambiguity flagged",
+      "status": "PASS",
+      "detail": "Heuristic ambiguity/measurement clarification shown for vague requirement."
+    },
+    {
+      "id": 13,
+      "name": "Contradictions flagged",
+      "status": "PASS",
+      "detail": "Contradiction between registration/no-registration statements flagged without selecting a policy."
+    },
+    {
+      "id": 14,
+      "name": "Source evidence/provenance retained",
+      "status": "PASS",
+      "detail": "Original wording/source IDs and inferred provenance retained."
+    },
+    {
+      "id": 15,
+      "name": "Modules generated",
+      "status": "PASS",
+      "detail": "Source-linked suggested modules displayed."
+    },
+    {
+      "id": 16,
+      "name": "Tasks/dependencies generated",
+      "status": "PASS",
+      "detail": "Developer tasks and source-specific dependency gates displayed."
+    },
+    {
+      "id": 17,
+      "name": "Phases/scope generated",
+      "status": "PASS",
+      "detail": "Provisional discovery/implementation/acceptance sequence, dependency gates and unresolved scope displayed. Initial harness expected a literal Phase heading; corrected to actual product contract without changing application."
+    },
+    {
+      "id": 18,
+      "name": "Proposal draft generated",
+      "status": "BLOCKED",
+      "detail": "Dependent workflow not reached after an earlier harness/scenario failure."
+    },
+    {
+      "id": 19,
+      "name": "No invented/approved pricing",
+      "status": "BLOCKED",
+      "detail": "Dependent workflow not reached after an earlier harness/scenario failure."
+    },
+    {
+      "id": 20,
+      "name": "Unauthorized project refusal",
+      "status": "PASS",
+      "detail": "Unassigned fictional user receives 404 on project browser navigation."
+    },
+    {
+      "id": 21,
+      "name": "Owner/reviewer permissions",
+      "status": "FAIL",
+      "detail": "The input did not match the regular expression /403|Forbidden/. Input:\n\n'404\\nNot Found'\n"
+    },
+    {
+      "id": 22,
+      "name": "Authorized human review controls",
+      "status": "BLOCKED",
+      "detail": "Dependent workflow not reached after an earlier harness/scenario failure."
+    },
+    {
+      "id": 23,
+      "name": "Revision history recorded",
+      "status": "BLOCKED",
+      "detail": "Dependent workflow not reached after an earlier harness/scenario failure."
+    },
+    {
+      "id": 24,
+      "name": "Edit invalidates approval",
+      "status": "BLOCKED",
+      "detail": "Dependent workflow not reached after an earlier harness/scenario failure."
+    },
+    {
+      "id": 25,
+      "name": "Invalid uploads/malformed inputs rejected",
+      "status": "BLOCKED",
+      "detail": "Dependent workflow not reached after an earlier harness/scenario failure."
+    },
+    {
+      "id": 26,
+      "name": "No unexpected fatal errors",
+      "status": "BLOCKED",
+      "detail": "Dependent workflow not reached after an earlier harness/scenario failure."
+    }
+  ],
+  "screenshots": [
+    "01-login.png",
+    "02-project-created.png",
+    "03-document-sources.png",
+    "04-classification.png",
+    "05-missing-questions.png",
+    "06-conflict.png",
+    "failure-observation.png",
+    "11-phases.png",
+    "07-outsider-404.png",
+    "failure-observation.png"
+  ],
+  "fatalErrors": [],
+  "pageErrors": []
+}

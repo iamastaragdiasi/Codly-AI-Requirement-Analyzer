@@ -2,6 +2,8 @@
 **Project:** AI-Powered Business Requirement & Project Analysis System
 **Purpose:** Record human evaluation of analysis quality using fictional or explicitly approved data only.
 
+**Current qualification (13 October 2026):** The separate [browser acceptance run](browser-acceptance/README.md) passed 26 software checks. It does not populate this sheet or constitute Codly human evaluation. All ratings, evaluator identity, decisions and sign-off fields remain pending actual authorized human review.
+
 ## Instructions
 
 1. Assign each test case an ID and record the exact input or a secure reference to it.

@@ -6,7 +6,7 @@
 **Report date:** 13 October 2026
 **Status:** Draft for factual review and supervisor approval
 
-> This report describes the current inspected implementation and recorded test evidence. It does not claim that live AI integration, complete end-to-end document-upload behaviour, production deployment or business impact has been demonstrated. PDF/DOCX text extraction is implemented for supported, readable documents; scanned/image-only PDFs and OCR remain unsupported. The latest end-to-end upload/analysis verification is still pending. Chapter 2 deliberately distinguishes confirmed project information from Codly's internal process, which must be confirmed by the supervisor.
+> This DRAFT describes implementation and recorded evidence: 26 representative real-Chrome browser checks passed, including readable PDF and DOCX paragraph/table intake through analysis/review; final local regressions passed 79 tests / 566 assertions. It does not claim live AI integration, general semantic accuracy, production deployment or measured business impact. Scanned/image-only PDFs and OCR remain unsupported. Chapter 2 distinguishes specification information from Codly's internal process, which requires supervisor confirmation.
 
 # Chapter 1 — Introduction
 
@@ -102,7 +102,7 @@ The inspected implementation includes:
 - A proposal-drafting workflow for human-entered effort, price, currency, maintenance terms, third-party costs and client responsibilities; drafting remains gated on approval of the current scope.
 - Tests covering malformed analysis output, conflicts, provenance, stale revisions, authorization and confidential-content handling.
 
-PDF/DOCX text extraction is implemented for supported, readable documents. Scanned or image-only PDFs and OCR remain unsupported, as do the other excluded media inputs. End-to-end upload verification remains outstanding. The current code must not be described as a fully integrated live AI platform.
+PDF/DOCX readable-text extraction passed representative real-browser upload-to-analysis checks, including DOCX paragraphs/table cells. Scanned/image-only PDFs, OCR and other excluded media inputs remain unsupported. This is a deterministic DEMO workflow, not a verified live AI platform.
 
 # Chapter 8 — AI Methodology
 
@@ -118,6 +118,8 @@ Any future live AI integration must use only Codly-approved services and credent
 
 # Chapter 9 — Testing
 
+Final real-browser pass: **26 PASS / 0 FAIL / 0 BLOCKED** in installed Chrome 155.0.8059.40 via temporary Playwright 1.64.0, using fictional accounts, fresh SQLite and temporary storage. Login/logout, project/text/PDF/DOCX intake, analysis/classification/priorities/questions/conflicts/provenance, planning/scope, owner/reviewer boundaries, unpriced drafts, revision invalidation and malformed inputs passed. Actual [results and 14 screenshots](browser-acceptance/README.md) are retained. Expected 409/422 workflow refusals initially displayed a generic error; two strengthened regressions reproduced that defect. A narrow plain-text renderer preserves refusal status and displays its reason; affected scenarios passed on retest. Final full suite: **79 pass / 566 assertions**, exit 0, one PHPWord deprecation; Pint passed. Previous 79/560 and other results below are historical and not replaced.
+
 Final portability-fix follow-up: local suite **79 pass / 560 assertions**, exit 0, with one non-failing PHPWord warning; Pint passed. Linux CI diagnosed valid DOCX as generic binary MIME. The fix allows that MIME only for DOCX while retaining package structure, expansion, parsing and text limits; positive and binary/file-array refusal regressions pass. Both Linux PHP 8.4 test and frontend jobs succeeded at normally published fix `9fa6cb967345a9c372a614ae92ac0cb820e8a3cd`. This is automated verification, not browser or company acceptance. Historical failures and counts remain below.
 
 The operator supplied the first full checkpoint-b6ccaf1 result: **72 PASS, one failure, 479 assertions and one deprecation**. The failure expected 404 for an unassigned document uploader but received 403. The established policy hides inaccessible projects; the source Form Request lost that status by converting the response to a boolean. This pass preserves the policy response and retains the 404 test expectation with no-source/no-audit/no-artifact/unchanged-revision assertions.
@@ -128,7 +130,7 @@ A focused fictional planning regression checks source-specific classification, u
 
 The focused DocumentExtractorTest diagnostic passed 5 tests / 8 assertions and reproduced the non-failing warning in PHPWord 1.1.0 Style.php:180: “Using null as an array offset is deprecated, use an empty string instead.” The earlier pdfparser inspection hypothesis was not the reproduced cause. No vendor edit, suppression or dependency change was made. GitHub CI at merge 9dbf9738 had 73 passing tests and two DOCX upload MIME failures (471 assertions); final diagnosis/disposition is in the execution status.
 
-Browser inventory returned no connected apps/browsers: browser checks are **NOT TESTED**. Feature HTTP tests do not prove browser rendering, uploads, anti-CSRF or usability. Human evaluation is **PENDING CODLY**, with no ratings or supervisor signature. See [pending verification and manual steps](FINAL_EXECUTION_STATUS.md).
+Earlier connected-browser inventory was empty, but the final pass successfully used locally installed Chrome through Playwright under explicit user authorization. Those earlier browser-unavailable reports remain historical in execution status. The representative workflow passed; full production security/usability and semantic quality remain distinct. Human evaluation is PENDING CODLY, with no ratings or supervisor signature.
 
 # Chapter 10 — Limitations
 
@@ -136,13 +138,13 @@ DEMO now provides source-specific scope/planning and candidate entity/integratio
 
 The current analysis provider is deterministic rather than a live LLM. Its heuristic approach cannot provide general semantic understanding and must not be presented as equivalent to a production AI service.
 
-Readable PDF/DOCX text extraction and a document-upload workflow are implemented in the current branch, but full end-to-end acceptance for both formats remains pending. Scanned/image-only PDFs, OCR, audio, screenshot and URL analysis are not part of the current implemented intake. A completed human evaluation sheet and measured business-impact study have not been evidenced in this draft.
+Representative readable PDF/DOCX intake and workflow passed real-browser checks; all document variants are not thereby accepted. Scanned/image-only PDFs, OCR, audio, screenshot and URL analysis remain unsupported. Existing MySQL authentication returned SQLSTATE 1045 on read-only inspection; acceptance used isolated SQLite and does not certify MySQL concurrency or that local connection. No completed Codly human rating sheet or measured business-impact study exists.
 
 The current test suite does not establish production deployment security, performance under load, backup recovery, availability or complete acceptance of every official requirement. The current application should be treated as a development/demo system until these areas are evaluated.
 
 # Chapter 11 — Future Scope
 
-Fresh local regressions, formatting/build and deprecation diagnostics are recorded. Manual/browser acceptance remains unavailable in the connected tool environment; CI document portability diagnosis is tracked in the execution status. No semantic improvement score is claimed. Live AI integration is BLOCKED and actual reviewer evaluation is PENDING CODLY.
+Final regressions, formatting and representative real-browser acceptance are recorded. Broader document/device/production checks and local MySQL configuration remain separate limitations; no semantic improvement score is claimed. Live AI integration is BLOCKED and actual Codly reviewer evaluation is PENDING CODLY.
 
 Potential future work, subject to supervisor approval, includes:
 
@@ -159,9 +161,9 @@ These items are proposals, not claims about existing functionality. Any external
 
 The finishing pass continued from clean merge 9dbf9738 and published it by normal non-force push under user-reported Codly authorization. Both local development commits and the remote handoff remain in history. Public publication does not authorize live provider access, client-data transfer or deployment; only authorized humans can approve commitments or sign this DRAFT. Codex history remains intact.
 
-The inspected implementation demonstrates a Laravel workspace with structured intake, deterministic analysis, validation, provenance, revision-sensitive review and gated proposal drafts. Readable PDF/DOCX extraction is implemented. Fresh local evidence is 75 pass / 507 assertions with one PHPWord deprecation and passing Pint/build; CI and browser qualifications are preserved in the execution status. This supports a development/demo milestone, not production readiness or completed human evaluation.
+The implementation demonstrates a Laravel workspace with structured intake, deterministic analysis, validation, provenance, revision-sensitive review and gated unpriced proposal drafts. Representative Chrome acceptance passed 26 checks; final local regressions passed 79 tests / 566 assertions with one PHPWord deprecation and passing Pint. The existing frontend build passed; final publication/CI is recorded in execution status. These results support a documented demo submission, not production readiness or completed Codly human evaluation.
 
-The evidence supports a development/demo milestone, not a claim of complete acceptance or production readiness. Live AI integration, end-to-end document-upload verification, completed human evaluation results, company-process confirmation and final deployment review remain outstanding or require additional evidence.
+Live AI integration, completed human quality evaluation, company-process confirmation/report approval and any production deployment review remain outstanding. Representative browser acceptance is now evidenced; actual portal submission remains the user's external action. No business-impact score, signature or final commercial commitment is invented.
 
 Before submission, the author and supervisor should review the acceptance matrix, confirm company-specific facts, inspect the final repository and configuration, verify all reported test results, and approve any outstanding scope exclusions.
 ## Evidence references

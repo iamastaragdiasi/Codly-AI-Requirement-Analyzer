@@ -7,6 +7,7 @@ use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Log;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -33,6 +34,19 @@ return Application::configure(basePath: dirname(__DIR__))
             }
 
             return null;
+        });
+        $exceptions->render(function (HttpException $exception, Request $request): ?Response {
+            $status = $exception->getStatusCode();
+
+            if (! $request->is('projects/*') || $request->expectsJson() || ! in_array($status, [409, 422], true)) {
+                return null;
+            }
+
+            $message = $exception->getMessage() ?: ($status === 409
+                ? 'The project revision changed. Reload before retrying.'
+                : 'This action requires a current analysis and the appropriate scope review.');
+
+            return response($message, $status)->header('Content-Type', 'text/plain; charset=UTF-8');
         });
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),

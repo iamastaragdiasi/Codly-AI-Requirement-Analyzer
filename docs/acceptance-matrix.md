@@ -3,6 +3,14 @@
 **Organization:** Codly India Private Limited
 **Evidence snapshot:** 13 October 2026
 
+## Final real-browser qualification
+
+**26 PASS / 0 FAIL / 0 BLOCKED** for the requested representative fictional workflow in installed Chrome 155.0.8059.40 via temporary Playwright 1.64.0. Fresh isolated SQLite/storage/accounts; no existing database reset or `.env` edit. Per-test results and screenshots are in [browser evidence](browser-acceptance/README.md). This supersedes the earlier browser-unavailable statements below for this executed scope. The 26 checks are software acceptance, not Codly semantic ratings or supervisor sign-off.
+
+AC-01–05, 07–13, 15, 21, 23–24: corresponding login, project/text/document intake, analysis/findings/provenance, review/authorization, revision, draft and refusal paths passed in the listed browser cases. The expected refusal-message defect with debug disabled was fixed and retested. Final local suite: 79 pass / 566 assertions; Pint passed; one PHPWord deprecation remains. All original historical runs remain in execution status.
+
+AC-14/17/18/28 remain Codly-dependent for live AI access, human ratings, company facts/report approval and real business decisions. AC-16/22 remain unsupported future-media/production scope. AC-25 remains partial heuristic modeling; browser presence does not establish design completeness or semantic accuracy. Original MySQL authentication failed on inspection; SQLite acceptance does not certify that environment or production locking. Representative encrypted/scanned documents and broader browser/device/production checks are not newly verified.
+
 ## Latest finishing qualification
 
 Supersedes earlier runtime, absent-handoff and publication blockers below while preserving their historical context. Code SHA `9dbf973822b05388fe6066ac9a3fafe22ec81cd0` was normally pushed and independently verified. Fresh local suite: 75 pass / 507 assertions, one PHPWord deprecation; Pint/build passed. GitHub CI test failure is tracked in [execution status](FINAL_EXECUTION_STATUS.md). Automated evidence is not browser or human acceptance.

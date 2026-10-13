@@ -15,6 +15,7 @@ Verified published application SHA: `9fa6cb967345a9c372a614ae92ac0cb820e8a3cd`, 
 | Modular prompt templates | `resources/prompts/requirement-analysis/v1/`; ai-v1 registry, recorded rationale and limits |
 | Fictional dataset | [EVAL-01–16](evaluation-cases.md), version 1.1; generated PDF/DOCX fixtures in existing document tests |
 | Automated evidence and failure analysis | [Execution status](FINAL_EXECUTION_STATUS.md); historical and fresh runs kept separate |
+| Real-browser acceptance evidence | [26-check record and 14 screenshots](browser-acceptance/README.md); isolated fictional Chrome/SQLite workflow |
 | Acceptance and official-scope traceability | [Acceptance matrix](acceptance-matrix.md); automated/browser/human scopes distinguished |
 | AI-use disclosure | [Disclosure](AI_USAGE_DISCLOSURE.md); human commit identity does not imply unaided authorship |
 | Provider/API integration instructions | [Provider setup](ai-provider-setup.md); DEMO remains default, live access blocked |
@@ -34,9 +35,9 @@ Demonstrate only fictional data: sign in as owner, create a separate project, ad
 
 ## Honest submission limitations
 
-Latest local correction evidence: **79 passing tests / 560 assertions**, one PHPWord deprecation, exit 0; required Pint formatter passed. Added regressions preserve readable fallback-DOCX behavior and refuse renamed binary/non-document and malformed file-array inputs. Final Linux CI and remote publication checkpoints are recorded in the execution status.
+Latest local correction evidence: **79 passing tests / 566 assertions**, one PHPWord deprecation, exit 0; required Pint formatter passed. All 26 real-browser software checks passed after the expected workflow-refusal message fix. Historical DOCX portability regressions and prior 79/560 evidence are retained. Final Linux CI and remote publication checkpoints are recorded in the execution status and final package commit note.
 
-No connected browser was available for this finishing pass: all manual UI cases remain NOT VERIFIED. No portal URL/session was supplied; no internship portal entry or upload occurred. No live deployment URL exists in this evidence. Codly must supply actual human quality review, company-process facts, report approval and authorized AI provider/model/credentials/data handling. DEMO cannot establish general semantic accuracy, business impact or production readiness. OCR, audio/image/URL intake and exact layout/source locations remain unsupported. Proposal pricing/timelines/final commitments remain human decisions.
+Installed Chrome was successfully controlled through temporary Playwright, despite no connected computer-use browser. Representative fictional browser acceptance passed; untested encrypted/scanned/complex documents, devices and production behavior remain outside that result. Existing MySQL configuration returned authentication error on read-only inspection; acceptance used an isolated new SQLite database. No portal URL/session was supplied; no internship portal entry/upload or public deployment occurred. Codly must supply actual human quality review, company-process facts, report approval and authorized AI provider/model/credentials/data handling. DEMO cannot establish general semantic accuracy, business impact or production readiness. OCR, audio/image/URL intake and exact layout/source locations remain unsupported. Real pricing/timelines/final commitments remain human decisions.
 
 Tracked files and eight historical commit snapshots had no high-confidence credential-pattern matches; secret-bearing paths, private source documents, uploads, logs and dependencies are excluded. This is a scoped publication review, not a guarantee of complete security. The official specification/compliance originals remain in Downloads and are not included in this public submission.
 

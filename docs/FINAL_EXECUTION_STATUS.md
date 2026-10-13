@@ -1,5 +1,19 @@
 # Final Execution Status — DRAFT
 
+## Final local-browser acceptance pass — 13 October 2026 (Asia/Calcutta)
+
+**Current outcome:** 26 browser checks PASS, 0 FAIL, 0 BLOCKED in the executed fictional DEMO scope; final local regression suite **79 PASS / 566 assertions**, exit 0, one known PHPWord deprecation. Pint `--dirty --format agent` passed. Earlier 79/560 and browser-unavailable records below remain historical evidence.
+
+Installed Google Chrome **155.0.8059.40** was controlled by Playwright **1.64.0**, installed only in a temporary directory. No project dependency changed. A fresh temporary SQLite database, temporary storage and three fictional owner/reviewer/outsider accounts were used. Migrations ran only on that new isolated database; existing `.env`, MySQL data and historical project decisions were preserved. Existing MySQL migration-status inspection returned authentication error SQLSTATE 1045; that environment issue is not fixed or certified by SQLite acceptance. The DEMO driver was confirmed and the isolated server bound only to loopback.
+
+Actual results and 14 safe screenshots: [browser evidence](browser-acceptance/README.md), [machine-readable results](browser-acceptance/browser-results.json). Authorization and stale-form checks include browser-originated POST requests with normal session/CSRF handling. Fictional fixture approvals are software-test actions, not Codly human evaluation, client confirmation or commercial authorization.
+
+**Confirmed defect and correction:** with debug disabled, expected 422 proposal refusal and 409 stale-revision refusal displayed a generic “Something is broken” page. Two strengthened existing regressions failed before the fix (2 tests, 4 assertions), then the existing revision suite passed (11 tests / 82 assertions). A narrow `bootstrap/app.php` renderer now shows the expected project workflow reason as plain text while retaining 409/422 status. JSON handling, authorization and approval rules are retained. The failed browser scenario and dependent workflow were retested successfully; full regression suite passed 79/566. No frontend source changed, so the existing passing Vite build was not unnecessarily repeated.
+
+Initial attempts also exposed a server-startup/lifecycle issue and two incorrect harness expectations (literal “Phase” wording and 403 instead of the existing policy's intentional 404). These were harness/environment corrections, not application defects. Earlier UI-attempt reports are retained with the final results. The sequential evidence starts at published `a22ecb1` and finishes on the narrow reviewed refusal-rendering patch; unaffected passing checks were not repeated.
+
+Coverage limitations: representative readable PDF/DOCX and malformed PDF/image/text cases passed; this does not certify every encrypted/scanned/complex document, production MySQL concurrency, production operations, cross-browser/mobile usability or general semantic accuracy. Codly human quality evaluation/company facts/report approval, approved live AI access and actual portal submission remain pending. Report remains DRAFT; Codex history is unchanged. Final normal Git push, CI and package checkpoints follow when executed.
+
 ## Latest finishing pass — 13 October 2026 (Asia/Calcutta)
 
 This section supersedes earlier current-state claims below; all earlier records remain historical evidence. Continued the existing application without dependency changes, database migrations, live AI calls or conversation-history deletion.

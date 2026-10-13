@@ -55,6 +55,7 @@ class RevisionWorkflowTest extends TestCase
 
     public function test_proposal_is_rejected_when_current_revision_is_not_approved(): void
     {
+        config(['app.debug' => false]);
         $reviewer = User::factory()->create();
         $reviewer->is_reviewer = true;
         $reviewer->save();
@@ -71,7 +72,9 @@ class RevisionWorkflowTest extends TestCase
                 'third_party_costs' => 'Client approval required',
                 'client_responsibilities' => 'Supply acceptance criteria',
             ])
-            ->assertUnprocessable();
+            ->assertUnprocessable()
+            ->assertSeeText('Approve current scope before drafting proposal.')
+            ->assertHeader('Content-Type', 'text/plain; charset=UTF-8');
 
         $this->assertDatabaseMissing('artifacts', [
             'project_id' => $project->id,
@@ -81,6 +84,7 @@ class RevisionWorkflowTest extends TestCase
 
     public function test_stale_proposal_submission_creates_no_artifact(): void
     {
+        config(['app.debug' => false]);
         $reviewer = User::factory()->create();
         $reviewer->is_reviewer = true;
         $reviewer->save();
@@ -97,7 +101,9 @@ class RevisionWorkflowTest extends TestCase
                 'third_party_costs' => 'Client approval required',
                 'client_responsibilities' => 'Supply acceptance criteria',
             ])
-            ->assertConflict();
+            ->assertConflict()
+            ->assertSeeText('The project revision changed. Reload before retrying.')
+            ->assertHeader('Content-Type', 'text/plain; charset=UTF-8');
 
         $this->assertDatabaseMissing('artifacts', [
             'project_id' => $project->id,

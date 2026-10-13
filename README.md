@@ -6,7 +6,7 @@ The system combines a persisted web workflow, document text extraction, structur
 
 > **Project status:** Implementation and verification are in progress. Read the implementation status, known limitations, acceptance matrix, and evaluation plan before treating any capability as production-ready.
 
-**Finishing evidence (13 October 2026):** Reconciled code was published at `9dbf973822b05388fe6066ac9a3fafe22ec81cd0`. Linux CI exposed a valid-DOCX MIME portability failure; the bounded DOCX fallback and refusal regressions now pass **79 local PHP 8.5 tests / 560 assertions**, with one non-failing PHPWord deprecation. Pint and Vite build passed. Browser acceptance and Codly human evaluation remain outstanding. See the [submission manifest](docs/SUBMISSION_MANIFEST.md) and [latest execution status](docs/FINAL_EXECUTION_STATUS.md) for final publication and CI evidence.
+**Finishing evidence (13 October 2026):** **26 representative real-Chrome browser checks passed**, with [actual results and screenshots](docs/browser-acceptance/README.md). A confirmed expected-refusal message defect was fixed; final local PHP 8.5 suite passed **79 tests / 566 assertions**, with one non-failing PHPWord deprecation, and Pint passed. The unchanged frontend retains its passing Vite build evidence. Tests used fictional accounts and isolated SQLite; the existing MySQL authentication issue remains a local configuration limitation. Codly human evaluation/report approval and approved live AI access remain pending. See the [submission manifest](docs/SUBMISSION_MANIFEST.md) and [latest execution status](docs/FINAL_EXECUTION_STATUS.md) for final publication/CI evidence.
 
 ---
 
@@ -152,7 +152,7 @@ The following table distinguishes implemented components from capabilities that 
 | Configurable analysis-provider abstraction | Implemented and unit-tested | A working live provider integration is not verified |
 | Modular prompt registry | Implemented and unit-tested | Prompt quality still requires evaluation against representative inputs |
 | Structured analysis validation | Implemented and unit-tested | Valid structure does not guarantee semantic correctness |
-| PDF/DOCX text extraction | Implemented for supported readable documents | End-to-end upload verification remains outstanding |
+| PDF/DOCX text extraction | Implemented; representative real-browser upload/extraction passed | DOCX paragraphs/tables and readable PDF verified; OCR/complex-document coverage remains limited |
 | Scanned-document OCR | Not implemented | Image-only document text is not extracted by OCR |
 | Text provenance and source references | Supported by the analysis contract | Coverage and correctness must be verified for each result |
 | Revision and change-related workflow | Implemented in the current workflow | Review the acceptance matrix for exact verified behavior |
@@ -831,7 +831,7 @@ The test suite contains unit and feature tests for selected application contract
 | `AnalysisContractTest` | 9 tests passed, 9 assertions |
 | `ConfigurableAiAnalysisProviderTest` | 5 tests passed, 11 assertions |
 
-The operator supplied a historical baseline of **58 passing tests and 325 assertions** and a passing frontend build. Those results do not verify subsequent changes. On 2026-10-13 the frontend build and PHP syntax checks passed; the focused Laravel tests and Pint were blocked by compatible-runtime access. Browser acceptance is outstanding. See [actual execution evidence](docs/FINAL_EXECUTION_STATUS.md).
+Historical baseline: **58 passing tests / 325 assertions**; later runs and initial runtime blockers are preserved in [execution evidence](docs/FINAL_EXECUTION_STATUS.md). The final confirmed-refusal patch passed **79 tests / 566 assertions**, one PHPWord deprecation, and Pint. Representative real-Chrome acceptance passed **26 checks**, with actual results/screenshots; Codly human quality evaluation remains pending.
 
 A previous Windows full-suite run encountered a virtual-memory allocation failure, so failed process runs must be distinguished from assertion failures.
 
@@ -925,7 +925,7 @@ The following limitations should be considered when reviewing or using the appli
 1. **Live AI integration:** Not verified; the current analysis path is deterministic demonstration analysis.
 2. **Semantic accuracy:** Passing schema validation does not prove that a requirement has been interpreted correctly.
 3. **Document formats:** Readable PDF and DOCX text extraction is implemented; OCR and image-only document interpretation are not.
-4. **End-to-end upload behavior:** Complete upload-to-analysis verification remains outstanding.
+4. **Document coverage:** Representative readable PDF/DOCX upload-to-analysis passed in Chrome; this does not verify every complex/encrypted/scanned document.
 5. **Human evaluation:** A completed representative evaluation dataset and measured results have not been established.
 6. **Effort estimation:** No approved automatic estimation model exists.
 7. **Commercial pricing:** No approved pricing-rule engine exists.
@@ -945,18 +945,14 @@ Use [`docs/acceptance-matrix.md`](docs/acceptance-matrix.md) as the detailed che
 
 Key outstanding areas include:
 
-- Verify complete source upload and analysis behavior end to end.
-- Verify PDF extraction using representative supported documents.
-- Confirm that unsupported or malformed documents fail safely.
+- Extend representative browser document acceptance to any additional complex/encrypted/scanned cases required by Codly; OCR remains unsupported.
 - Complete an authorized live AI integration only if approved.
-- Build and complete a representative human evaluation dataset.
+- Complete Codly human evaluation using the prepared fictional dataset.
 - Record measured evaluation results rather than planned metrics alone.
 - Review the final internship report for accuracy and completeness.
 - Perform a clean-environment setup walkthrough.
-- Review all tracked, untracked, and ignored files before any publication.
-- Confirm that `.env.example` contains placeholders rather than real secrets.
-- Verify repository visibility and publication readiness separately.
-- Obtain explicit approval before publishing or pushing project changes.
+- Correct the original local MySQL authentication configuration if that environment is used; isolated SQLite acceptance does not certify MySQL behavior.
+- Complete actual portal submission and retain supervisor approval separately from software checks.
 
 Do not mark an item as verified merely because a related class or test exists. Record the actual evidence and any limitations.
 

@@ -5,6 +5,10 @@
 **Status:** Prepared for human evaluation; no ratings or aggregate results recorded
 **Data policy:** All names, products, systems, figures and statements below are fictional.
 
+## Executed software acceptance qualification — 13 October 2026
+
+Representative cases were exercised in real Chrome through the separate [26-check browser acceptance record](browser-acceptance/README.md): readable PDF/DOCX paragraphs/tables, payment questions, performance category/priority, ambiguity/conflict evidence, provenance, reviewer permissions, revision invalidation, unpriced drafts and malformed PDF/image/blank-text refusals. These are workflow observations, not completed Codly per-case semantic evaluations or human quality scores. EVAL-15 has representative browser intake evidence; EVAL-16 has only the specific executed refusal cases, not all encrypted/scanned/large-file cases. Dataset version 1.1 and all expected findings below remain unchanged; the human rating register remains blank.
+
 ## How to use this dataset
 
 1. Create a separate test project for each case and enter the input exactly as written.
