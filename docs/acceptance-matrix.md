@@ -20,6 +20,8 @@ Supersedes earlier runtime, absent-handoff and publication blockers below while 
 
 ### Official specification and master-plan mapping
 
+Portability follow-up: CI confirmed valid DOCX as `application/octet-stream`. The fallback is limited to `.docx` and still requires bounded archive validation and actual readable-text parsing. Valid fallback DOCX, binary non-DOCX/non-PDF refusal and malformed file-array regressions were added; final local suite **79 pass / 560 assertions**, one PHPWord deprecation; Pint passed. Final Linux CI disposition is in the execution status.
+
 | Official sections | Implemented evidence / disposition |
 |---|---|
 | 1–6, 41–44: intake and workflow | Laravel project/source flow; text/structured/readable PDF/DOCX fixtures. Browser acceptance pending; OCR optional per §42; voice/images/URL intake future scope. |

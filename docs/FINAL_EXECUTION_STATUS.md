@@ -26,6 +26,16 @@ This section supersedes earlier current-state claims below; all earlier records 
 
 58 tests / 325 assertions: earlier reported baseline before later documentation edits, exact run timestamp not established. Checkpoint `b6ccaf1`: reported 72 pass, one failure, 479 assertions. Corrective `60a9cf8`: operator-reported 74 pass / 507 assertions, one deprecation, Pint 73 files and build pass on 13 October 2026. Fresh run at merge `9dbf9738`: tool-reported 75 pass / 507 assertions; counts are not combined or silently normalized.
 
+### CI portability correction and finishing publication checkpoints
+
+Documentation/diagnostic commit `1bcf557a9e4997e2a869fff3d4fd619d2cce1cda` passed the FIXED gate's checks and normal publish mode, exit 0; log `Codly-Release-Gate-20261013-162629/readiness-summary.txt`. Remote matched that SHA. Its CI diagnostic confirmed readable DOCX detected as `application/octet-stream` on Linux; two upload tests failed, 73 passed / 471 assertions. Scoped CI-log access was separately authorized by the user after automatic approval review initially rejected credential-helper use. No credential was displayed or stored in the submission.
+
+Correction: allow generic binary MIME only for a `.docx` filename while preserving file/extension/10 MB validation, DOCX archive/package-entry/20 MB expansion validation, actual parsing, non-empty text and the 50,000-character cap before any persistence. PDF has no generic-binary fallback. Added valid fallback DOCX workflow plus binary non-DOCX/non-PDF refusal cases; originals and existing denial/revision tests retained. This addresses content-detection portability, not a relaxed parser or trusted client MIME. See [Laravel content-type validation](https://laravel.com/framework/docs/validation/latest).
+
+Actual local browser launch also failed with `Browser is not available: iab`, confirming browser acceptance remains unavailable. No local UI account/project records were created or historical QuickBite approval changed. Portal submission remains unperformed.
+
+Correction verification: focused document/revision suite passed 25 tests / 247 assertions, exit 0. Interim full suite passed 78 / 555; after guarding malformed file-array input and adding its refusal regression, final full suite passed **79 tests / 560 assertions**, exit 0, on the reviewed patch based on `1bcf557`. One PHPWord deprecation remains. Required `pint --dirty --format agent` passed, exit 0. `git diff --check` and submission Markdown link checks passed. No frontend source changed after the passing build. Final fix gate and remote checkpoints will be recorded after execution. Self-referential final commit SHAs are supplied in the final chat proof; each on-disk record refers to already executed checkpoints.
+
 ## Preserved earlier execution records
 
 **Current pass:** 13 October 2026, Asia/Calcutta. **Starting HEAD:** b6ccaf1b923e859e574eee2559f4059672ca6217 (human checkpoint). Final ref recheck recorded below. No staging, commit, push, history rewrite, dependency change, migration, real-data write, personal credentials or live AI calls in this pass.

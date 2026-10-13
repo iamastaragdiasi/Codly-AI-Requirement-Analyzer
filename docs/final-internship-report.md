@@ -118,6 +118,8 @@ Any future live AI integration must use only Codly-approved services and credent
 
 # Chapter 9 — Testing
 
+Final portability-fix follow-up: local suite **79 pass / 560 assertions**, exit 0, with one non-failing PHPWord warning; Pint passed. Linux CI diagnosed valid DOCX as generic binary MIME. The fix allows that MIME only for DOCX while retaining package structure, expansion, parsing and text limits; positive and binary/file-array refusal regressions pass locally. Final CI/publication evidence is recorded in the execution status, separately from historical failures and run counts below.
+
 The operator supplied the first full checkpoint-b6ccaf1 result: **72 PASS, one failure, 479 assertions and one deprecation**. The failure expected 404 for an unassigned document uploader but received 403. The established policy hides inaccessible projects; the source Form Request lost that status by converting the response to a boolean. This pass preserves the policy response and retains the 404 test expectation with no-source/no-audit/no-artifact/unchanged-revision assertions.
 
 Historical baseline: 58 tests / 325 assertions; checkpoint b6ccaf1: 72 pass, one failure, 479 assertions; corrective 60a9cf8: operator-reported 74 pass / 507 assertions, one deprecation, Pint 73 files and Vite build pass. Fresh finishing run at merge 9dbf9738: tool-reported 75 pass / 507 assertions, one deprecation, exit 0. Fresh Pint formatting passed without source changes and Vite 8.3.4 build passed. These runs have distinct scopes and are retained in the execution record; no semantic quality score follows from their counts.

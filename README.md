@@ -6,7 +6,7 @@ The system combines a persisted web workflow, document text extraction, structur
 
 > **Project status:** Implementation and verification are in progress. Read the implementation status, known limitations, acceptance matrix, and evaluation plan before treating any capability as production-ready.
 
-**Finishing evidence (13 October 2026):** Reconciled code was published at `9dbf973822b05388fe6066ac9a3fafe22ec81cd0`. A fresh local PHP 8.5 run reported 75 passing tests / 507 assertions and one non-failing PHPWord deprecation; Pint and Vite build passed. Browser acceptance and Codly human evaluation remain outstanding. See the [submission manifest](docs/SUBMISSION_MANIFEST.md) and [latest execution status](docs/FINAL_EXECUTION_STATUS.md) for publication and CI qualifications.
+**Finishing evidence (13 October 2026):** Reconciled code was published at `9dbf973822b05388fe6066ac9a3fafe22ec81cd0`. Linux CI exposed a valid-DOCX MIME portability failure; the bounded DOCX fallback and refusal regressions now pass **79 local PHP 8.5 tests / 560 assertions**, with one non-failing PHPWord deprecation. Pint and Vite build passed. Browser acceptance and Codly human evaluation remain outstanding. See the [submission manifest](docs/SUBMISSION_MANIFEST.md) and [latest execution status](docs/FINAL_EXECUTION_STATUS.md) for final publication and CI evidence.
 
 ---
 

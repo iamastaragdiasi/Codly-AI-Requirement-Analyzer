@@ -17,14 +17,18 @@ class DocumentWorkflowTest extends TestCase
 {
     use LazilyRefreshDatabase;
 
-    /** @return array<string, array{string}> */
+    /** @return array<string, array{string, bool}> */
     public static function formats(): array
     {
-        return ['PDF' => ['pdf'], 'DOCX table' => ['docx']];
+        return [
+            'PDF' => ['pdf', false],
+            'DOCX table' => ['docx', false],
+            'DOCX generic binary MIME' => ['docx', true],
+        ];
     }
 
     #[DataProvider('formats')]
-    public function test_document_analysis_review_and_proposal_remain_revision_bound(string $format): void
+    public function test_document_analysis_review_and_proposal_remain_revision_bound(string $format, bool $genericBinaryMime): void
     {
         config(['ai_analysis.driver' => 'demo']);
         Http::preventStrayRequests();
@@ -36,6 +40,15 @@ class DocumentWorkflowTest extends TestCase
 
         try {
             $file = new UploadedFile($path, 'fictional-requirements.'.$format, null, null, true);
+            if ($genericBinaryMime) {
+                $file = new class($path, 'fictional-requirements.docx', null, null, true) extends UploadedFile
+                {
+                    public function getMimeType(): ?string
+                    {
+                        return 'application/octet-stream';
+                    }
+                };
+            }
             $response = $this->actingAs($owner)->post(route('sources.store', $project), [
                 'kind' => 'document', 'priority' => 'Must',
                 'file' => $file,
@@ -123,6 +136,8 @@ class DocumentWorkflowTest extends TestCase
         return [
             'malformed PDF' => ['pdf', '%PDF-1.4 invalid'],
             'malformed DOCX' => ['docx', 'not a zip archive'],
+            'binary non-DOCX' => ['docx', str_repeat("\x00", 128)],
+            'binary non-PDF' => ['pdf', str_repeat("\x00", 128)],
             'textless PDF' => ['pdf', 'textless'],
             'encrypted PDF' => ['pdf', 'encrypted'],
             'extracted text limit' => ['docx', 'too much text'],
@@ -179,6 +194,21 @@ class DocumentWorkflowTest extends TestCase
         $this->assertDatabaseCount('audit_events', 0);
         $this->assertDatabaseCount('artifacts', 0);
         $this->assertDatabaseCount('sources', 0);
+        $this->assertSame(1, $project->fresh()->revision);
+    }
+
+    public function test_document_file_array_is_rejected_without_persisting_evidence(): void
+    {
+        $owner = User::factory()->create();
+        $project = Project::factory()->create(['user_id' => $owner->id]);
+
+        $this->actingAs($owner)->post(route('sources.store', $project), [
+            'kind' => 'document', 'priority' => 'Must',
+            'file' => [UploadedFile::fake()->create('fictional.docx')],
+        ])->assertSessionHasErrors('file');
+
+        $this->assertDatabaseCount('sources', 0);
+        $this->assertDatabaseCount('audit_events', 0);
         $this->assertSame(1, $project->fresh()->revision);
     }
 
