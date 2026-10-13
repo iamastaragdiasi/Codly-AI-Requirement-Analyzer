@@ -7,7 +7,10 @@ use App\DeterministicAnalysisProvider;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Http;
+use PhpOffice\PhpWord\IOFactory;
+use PhpOffice\PhpWord\PhpWord;
 use Tests\TestCase;
 
 class RevisionWorkflowTest extends TestCase
@@ -101,6 +104,7 @@ class RevisionWorkflowTest extends TestCase
             'kind' => 'proposal',
         ]);
     }
+
     public function test_unauthorized_and_unassigned_reviewers_cannot_access_or_approve(): void
     {
         $project = Project::factory()->create();
@@ -224,17 +228,18 @@ class RevisionWorkflowTest extends TestCase
         $analysis = $project->analyses()->latest('id')->firstOrFail();
         $this->assertSame('failed', $analysis->status);
         $this->assertSame(['security' => 'Module failed. No confidential exception details stored.'], $analysis->failures);
-        $this->assertArrayHasKey('extraction',$analysis->results);
+        $this->assertArrayHasKey('extraction', $analysis->results);
     }
+
     public function test_docx_upload_extracts_and_stores_unconfirmed_source(): void
     {
-        $owner = \App\Models\User::factory()->create();
-        $project = \App\Models\Project::factory()->create([
+        $owner = User::factory()->create();
+        $project = Project::factory()->create([
             'user_id' => $owner->id,
             'revision' => 1,
         ]);
 
-        $document = new \PhpOffice\PhpWord\PhpWord();
+        $document = new PhpWord;
         $document->addSection()->addText(
             'Customers need an order tracking dashboard.'
         );
@@ -242,16 +247,16 @@ class RevisionWorkflowTest extends TestCase
         $tempPath = tempnam(sys_get_temp_dir(), 'codly-upload-');
         self::assertNotFalse($tempPath);
 
-        $docxPath = $tempPath . '.docx';
+        $docxPath = $tempPath.'.docx';
         @unlink($tempPath);
 
         try {
-            \PhpOffice\PhpWord\IOFactory::createWriter(
+            IOFactory::createWriter(
                 $document,
                 'Word2007'
             )->save($docxPath);
 
-            $file = new \Illuminate\Http\UploadedFile(
+            $file = new UploadedFile(
                 $docxPath,
                 'requirements.docx',
                 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',

@@ -13,7 +13,7 @@ final class ConfigurableAiAnalysisProvider implements AnalysisProvider
     public function __construct(private AnalysisPromptRegistry $prompts) {}
 
     /** @param array<string,mixed> $input
-     *  @return array<string,mixed>
+     * @return array<string,mixed>
      */
     public function run(string $module, array $input, int $attempt): array
     {
@@ -173,7 +173,7 @@ final class ConfigurableAiAnalysisProvider implements AnalysisProvider
     }
 
     /** @param array<string,mixed> $input
-     *  @return array<string,mixed>
+     * @return array<string,mixed>
      */
     private function safeInput(array $input): array
     {

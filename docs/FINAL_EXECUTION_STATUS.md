@@ -1,5 +1,71 @@
 # Final Execution Status — DRAFT
 
+**Current pass:** 13 October 2026, Asia/Calcutta. **Starting HEAD:** b6ccaf1b923e859e574eee2559f4059672ca6217 (human checkpoint). Final ref recheck recorded below. No staging, commit, push, history rewrite, dependency change, migration, real-data write, personal credentials or live AI calls in this pass.
+
+## New evidence and focused fixes
+
+The operator reports the first full checkpoint run: **72 PASS, 1 failure, 479 assertions, 1 deprecation**. The failure is DocumentWorkflowTest::test_unassigned_user_cannot_upload_to_another_project: expected 404, received 403. Pint reported 15 style issues across 73 files. These are operator-supplied checkpoint results, not post-edit results and not semantic or browser acceptance scores.
+
+- ProjectPolicy::view/update/contribute deliberately use denyAsNotFound. StoreSourceRequest converted contribute to a boolean via can(), discarding that 404. It now returns Gate::inspect's authorization Response; installed Laravel 13 FormRequest authorizes the Response before validation. The controller's locked-project authorization remains. The test retains 404 and now also checks no audit/artifact writes, no source, unchanged revision.
+- DEMO classification titles retain the actual requirement wording with category. Submitted priority remains separate from AI categorization; neither implies client confirmation.
+- DEMO business context adds source-linked scope candidates and an explicit missing business-type/outcome/boundary finding. Missing-information outputs add source-specific payment, API and performance questions, or actor/trigger/result/acceptance questions. No answers are generated.
+- DEMO modules use evidence-specific subjects. Tasks split into acceptance review, design/implementation and verification, with source-labelled dependency gates. Three tasks per source fit the existing 300-item contract at the 100-source intake cap. Phases state discovery/implementation/acceptance sequence and entry/exit gates, retaining Future backlog wording and unresolved dates/staffing.
+- Role screen notes outline a provisional journey. Architecture derives a bounded candidate entity vocabulary from words actually present in evidence and adds payment/API technical review questions. Relationships, provider, cost, ownership and retention remain unresolved. This is heuristic detail within the existing schema, not a comprehensive semantic model or final database design.
+- Existing ambiguity/conflict evidence retention, DOCX table traversal, content-based MIME and extension validation, 10 MB upload/50,000-character text/20 MB DOCX declared expansion limits were preserved. Original binaries/layout/page locations and OCR remain unsupported.
+- ProposalBuilder and exact-revision approval controls were inspected and retained: source-linked scope, unresolved terms, null effort/blank price defaults, nonbinding DRAFT, and revision invalidation. Automated reviewer approval never changes AI suggestions into Client Confirmed.
+- Added a fictional source-specific planning regression to AnalysisScenariosTest; strengthened the failing document denial regression. No new test file/generator or verification script was created.
+
+## Verification in this pass
+
+| Check | Actual outcome |
+|---|---|
+| Shell Get-Location | BLOCKED before process startup: helper_unknown_error, setup refresh had errors. No repeated startup attempts. |
+| Workspace file interface | Used for scoped reads/edits; .ai/rules is absent. Applicable Laravel and testing skills and mapped rules read. |
+| Installed API confirmation | Boost application-info/search-docs and installed FormRequest source confirm Laravel 13 and response authorization support. |
+| Browser inventory | No apps or browsers returned. Browser acceptance **NOT TESTED**. HTTP tests are not browser acceptance. |
+| Focused tests after edits | **PENDING parent verification**; no runtime behavioral result claimed. |
+| Pint auto-fix / Pint test | **PENDING parent verification**; parent owns formatting and final test execution. |
+| Diff/HEAD/index verification | Ref file read only; recheck below. Parent should append git diff --check and git status results. No Git mutation issued. |
+
+### Concrete dependency deprecation investigation
+
+Installed smalot/pdfparser 2.12.5 contains Font::uchr at vendor/smalot/pdfparser/src/Smalot/PdfParser/Font.php:150 calling mb_convert_encoding with HTML-ENTITIES as its source encoding. That conversion mode is deprecated on current PHP. PHPWord 1.1.0 also contains utf8_encode fallback calls, but the ASCII DOCX fixture does not establish that they were reached. No matching deprecated call was found in project DocumentExtractor/Test code inspected here. The supplied summary lacks the emitted message/stack, and shell failure prevents a diagnostic rerun, so the exact origin of the reported single deprecation is **not runtime-confirmed**. Do not equate the located vendor call with a verified stack trace. Do not suppress deprecations or edit vendor/dependencies without authorization.
+
+Parent diagnostic: run vendor/bin/phpunit tests/Unit/DocumentExtractorTest.php --display-deprecations --display-phpunit-deprecations, append exact message/file/line and affected case, then determine whether a project fix or approved dependency update is needed. Deprecation disposition remains pending until that evidence exists.
+
+## Remaining governance gates
+
+| Item | Status and scope |
+|---|---|
+| Live AI integration | **BLOCKED**, deliberately excluded from self-service implementation. Requires Codly-approved provider/model/endpoint, credentials and data-transfer/retention approval. DEMO remains labelled DEMO. |
+| Actual Codly reviewer evaluation and approval | **PENDING CODLY**, deliberately excluded from self-service work. Human must run fictional evaluation cases, record ratings/defects and approve the report/scope. No ratings or signature fabricated. |
+| Official Codly specification | Authoritative. Approved local specification/handoff remains unavailable in inspected docs; obtain it for final scope reconciliation. Preserve prior handoff below. |
+| Browser/manual acceptance | **NOT TESTED**. Execute retained fictional steps below and record actual evidence. |
+| Production readiness/publication | Not established; no publication/deployment permission inferred. |
+
+## Parent verification outcomes — PENDING
+
+Append actual focused test and final suite outcomes, deprecation diagnostics, Pint results, diff checks and final human commit SHA here. Suggested affected tests: DocumentWorkflowTest, AnalysisScenariosTest, WorkspaceSecurityTest, RevisionWorkflowTest and DocumentExtractorTest. No completed outcome is prefilled.
+
+## Human browser steps — all pending
+
+Use only fictional data in separate clearly named test projects and existing authorized local accounts. Confirm the driver is demo before analysis. Do not change or approve the historical QuickBite changes_requested project just to satisfy a gate. No new credentials are required by these steps.
+
+1. As owner create a fictional project. As an unassigned user try its page, upload, analysis and review actions; verify refusal without source/artifact writes. As owner try review/approval/proposal actions and verify reviewer-only refusal. As an assigned authorized reviewer verify allowed contribution/review and owner-only context-edit refusal.
+2. Upload a readable selectable-text PDF and a DOCX containing paragraph and table requirements, separately. Check filename/format, extracted original text, unconfirmed metadata and revision increment. Generate DEMO analysis; compare source IDs/statements and all four provenance labels. Review actual classification rather than assuming candidates are correct.
+3. Record changes_requested and rejected with notes and verify proposal drafting is refused. Correct a finding/category/scope; inspect before/after history and approval invalidation. Submit an old revision form and verify HTTP 409 with no decision/artifact write. Explicit client confirmation must carry actual fictional evidence; approval alone must not relabel findings.
+4. Only in the fictional test workflow, an authorized human reviewer may approve the current reviewed scope. Draft with blank price/effort and explicit Not agreed terms, then with fictional human-entered payment/support terms. Check nonbinding language, source-linked deliverables/exclusions and renewed approval requirement after drafting. Never finalize or send a proposal as part of this check.
+5. Test malformed, renamed HTML/ZIP, >10 MB, >50,000 extracted characters, encrypted and genuinely scanned/image-only documents. Record the actual errors and confirm no source/revision write on refusal. Verify local server/PHP upload limits also produce understandable errors. DOCX >20 MB declared expanded content should fail; no OCR result should be invented.
+6. Check escaped fictional HTML in source and all new fields, validation error display, failed provider UI using approved fake/test seams only, logout/session behavior and missing-CSRF refusal. Record real output references/screenshots only when produced. Keep production session/security acceptance separate.
+7. Run EVAL-01 through EVAL-16, record actual provider/prompt/diff/revisions, ratings and defects in the blank human sheet. Supervisor must confirm Chapter 2 company facts and sign off all twelve DRAFT chapters. Do not derive ratings from automated tests.
+
+
+## Preserved prior execution/handoff evidence
+
+The following record belongs to the earlier pass before human checkpoint b6ccaf1. Its older HEAD, environment failures, staged counts and commit guidance are historical and superseded by the current operator instructions. They are retained as evidence, not current claims or authorization to stage/commit/push.
+
+# Final Execution Status — DRAFT
+
 **Execution date:** 2026-10-13 (Asia/Calcutta)
 **Workspace:** E:\Codly-AI-Requirement-Analyzer
 **Branch / starting and final HEAD:** main / eaa6aaf5611da0824d6750764ee85069f2cda45f
@@ -153,10 +219,26 @@ Confirm author AND committer exactly match the confirmed human variables; ensure
 - [Supplied remote handoff, read-only fallback](https://github.com/iamastaragdiasi/Codly-AI-Requirement-Analyzer/blob/main/docs/PROJECT_HANDOFF.md) — local file absent; current operator restrictions override its older push guidance.
 - API checks used installed package source and [Laravel 13 validation](https://laravel.com/framework/docs/13.x/validation), [HTTP testing](https://laravel.com/framework/docs/13.x/http-tests), [PHPUnit 12.5](https://docs.phpunit.de/en/12.5/writing-tests-for-phpunit.html). Laravel Boost application-specific search tools were not callable; no package version was assumed.
 
-### Local follow-up verification � 2026-10-13 14:09:30
+### Local follow-up verification � 2026-10-13 14:09:30
 
 - Environment: APP_ENV=testing; SQLite in-memory requested.
 - Laravel test exit code: 1
 - Pint test exit code: 1
 - Both checks passed: False
 - Human and browser acceptance remain separate requirements.
+
+## Host-side verification after corrective pass — 2026-10-13 14:31:48 +05:30
+
+- Current checkout: b6ccaf1 (before any final commit).
+- Working PHP: C:\Users\ASTARAG DISAI\.config\herd-lite\bin\php.exe.
+- Test environment requested: APP_ENV=testing, SQLite in-memory; no production/dev MySQL migration performed.
+- php artisan test --no-ansi exit: 0. Full log: C:\Users\ASTARAG DISAI\AppData\Local\Codly-Final-Verification-20261013-142318\pass1-laravel-tests.stdout.log.
+- php vendor/bin/pint formatter exit: 0.
+- php vendor/bin/pint --test exit: 0.
+
+pm run build exit: 0.
+- Codex final pass exit: 1.
+- Automated green gate: False. Browser UI acceptance NOT TESTED unless independently evidenced.
+- Live approved AI integration: BLOCKED pending Codly authorization; deterministic demo is not a live LLM.
+- Codly team-member human evaluation/sign-off: PENDING Codly, excluded from autonomous execution.
+- This update supersedes any earlier *testing blocked* statement for these specific commands, but does not certify organizational acceptance or production readiness.

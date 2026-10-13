@@ -14,15 +14,16 @@ final class AnalysisPromptRegistry
         'ambiguity_conflicts', 'modules', 'tasks', 'screens', 'phases', 'security',
         'architecture', 'proposal',
     ];
+
     public function instructionsFor(string $module): string
     {
         if (! in_array($module, $this->modules(), true)) {
             throw new InvalidArgumentException('Unsupported analysis module.');
         }
 
-        $path = dirname(__DIR__) . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR . 'prompts' . DIRECTORY_SEPARATOR . 'requirement-analysis' . DIRECTORY_SEPARATOR . 'v1' . DIRECTORY_SEPARATOR . $module . '.md';
+        $path = dirname(__DIR__).DIRECTORY_SEPARATOR.'resources'.DIRECTORY_SEPARATOR.'prompts'.DIRECTORY_SEPARATOR.'requirement-analysis'.DIRECTORY_SEPARATOR.'v1'.DIRECTORY_SEPARATOR.$module.'.md';
         if (! is_file($path)) {
-            throw new \RuntimeException('Prompt template is missing for module: ' . $module);
+            throw new \RuntimeException('Prompt template is missing for module: '.$module);
         }
 
         return (string) file_get_contents($path);

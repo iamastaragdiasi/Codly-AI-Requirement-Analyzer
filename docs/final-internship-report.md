@@ -10,7 +10,7 @@
 
 # Chapter 1 — Introduction
 
-The authoritative local handoff is missing. This report remains DRAFT and does not establish Codly acceptance.
+The Codly specification remains authoritative. Approved local specification/handoff evidence is still missing; preserved prior execution records are historical. This report remains DRAFT and actual Codly evaluation/approval is PENDING CODLY.
 
 Business requirements may arrive as short messages, notes, structured descriptions or incomplete statements. Turning these inputs into a clear scope requires identifying what is known, what remains unanswered, and which assumptions require confirmation.
 
@@ -26,11 +26,11 @@ An approved project specification was not found in this checkout. The task brief
 
 Before final submission, the supervisor should confirm the actual intake channels, stakeholder roles, current documentation practices, review stages, recurring issues and approval responsibilities. The report should record those confirmed facts and identify the source of each material statement.
 
-Until the specification and process facts are supplied, this draft compares the implementation with the operator’s task brief and explicitly records coverage gaps.
+Until the specification and process facts are supplied, this draft compares the implementation with the operator’s task brief and records coverage gaps. Self-service completion does not authorize inventing company process facts.
 
 # Chapter 3 — Problem Identification
 
-There is no measured before/after productivity or performance baseline. Structural validation cannot prove semantic truth.
+There is no measured before/after productivity or performance baseline. The operator’s 72 passing checkpoint tests measure selected behavior, not semantic truth, human quality or business impact.
 
 Incomplete or ambiguous requirements can leave important questions unresolved. Contradictory statements can cause scope confusion, while unsupported assumptions can be mistaken for client-confirmed decisions. Changes after approval can also make an earlier decision obsolete.
 
@@ -40,7 +40,7 @@ Quantified claims about time saved, defect reduction, cost savings or productivi
 
 # Chapter 4 — Proposed Solution
 
-The current task adds candidate categories and richer draft fields while retaining human decisions and exact-revision gates; runtime verification is blocked.
+The current pass makes DEMO scope, requirement titles, missing questions and planning outputs source-specific within the existing contract. Human decisions and exact-revision gates remain. Post-edit runtime verification is pending the parent process.
 
 The proposed workflow is:
 
@@ -57,7 +57,7 @@ The current implementation provides a deterministic demo for the analysis stage.
 
 # Chapter 5 — Technology
 
-Installed metadata lists Laravel 13.35.0, PHPWord 1.1.0, pdfparser 2.12.5, PHPUnit 12.5.38 and Pint 1.32.1. Composer show was unavailable because compatible PHP is inaccessible. Historical MySQL/PHP environment records were not freshly verified.
+Installed metadata/Boost lists Laravel 13.35.0, PHPWord 1.1.0, pdfparser 2.12.5, PHPUnit 12.5.38 and Pint 1.32.1. This pass confirmed response authorization against installed Laravel source and Boost documentation. Shell startup failed; historical MySQL/PHP environment records were not freshly verified.
 
 ## Implemented technology
 
@@ -77,7 +77,7 @@ A future live integration should compare approved services against authorized se
 
 # Chapter 6 — System Design
 
-Document intake uses temporary upload paths and stores normalized text plus filename/format; original binaries, page locations and exact document layout are not retained. No schema changes or real-data migrations were made.
+Document intake uses temporary upload paths and stores normalized text plus filename/format; original binaries, page locations and exact document layout are not retained. Source authorization now preserves the policy’s 404 denial before validation, while locked-project reauthorization remains. No schema changes or real-data migrations were made.
 
 The application is organized around controllers, request validation, policies, analysis services, models, revision management and Blade views.
 
@@ -89,7 +89,7 @@ Sensitive operational details should not be included in audit messages or user-f
 
 # Chapter 7 — Implementation
 
-This run adds DOCX table traversal, archive structure/expanded-size checks, content MIME validation, five candidate categories with reviewer correction, displayed Must Have/Should Have/Could Have/Future labels, source-linked scope groups, and human-entered draft payment/support terms. These additions await behavioral tests.
+Checkpoint b6ccaf1 already includes DOCX table traversal, archive/content checks, categories, priority labels, scope groups and draft payment/support fields. This pass fixes the source authorization status loss and adds source-specific DEMO scope candidates, descriptive categorized requirements, missing questions, candidate entities/integration review, journey notes and three-stage task dependencies/phase gates. Post-edit regressions await execution.
 
 The inspected implementation includes:
 
@@ -106,7 +106,7 @@ PDF/DOCX text extraction is implemented for supported, readable documents. Scann
 
 # Chapter 8 — AI Methodology
 
-Codex/OpenAI assisted engineering, review, regression design and documentation. Humans remain responsible for review, retained changes and commits. See [AI assistance disclosure](AI_USAGE_DISCLOSURE.md). Prompt registry ai-v1 is unchanged; demo-v1 remains a heuristic contract identifier, not a trained model. No live call or training occurred.
+Codex/OpenAI assisted engineering, review, regression design and documentation, including this follow-up. The human operator authored checkpoint b6ccaf1 and owns subsequent verification/commit. Git authorship does not claim every line was written without AI. See [AI assistance disclosure](AI_USAGE_DISCLOSURE.md). Live prompts ai-v1 are unchanged; demo-v1 remains a heuristic contract identifier. No live call or training occurred.
 
 The current provider is a deterministic keyword/heuristic implementation. Its outputs are generated demo suggestions, not the results of a live language model. Its behavior can be predictable for known patterns but can miss context, produce incomplete findings or misclassify unfamiliar wording.
 
@@ -118,19 +118,19 @@ Any future live AI integration must use only Codly-approved services and credent
 
 # Chapter 9 — Testing
 
-The operator supplied a historical baseline of **58 passing tests and 325 assertions**, plus a passing frontend build. This is historical evidence, not a current-checkout pass. Older conflicting counts in the local draft have been superseded by that baseline; no CI job or fresh suite was independently verified here.
+The operator supplied the first full checkpoint-b6ccaf1 result: **72 PASS, one failure, 479 assertions and one deprecation**. The failure expected 404 for an unassigned document uploader but received 403. The established policy hides inaccessible projects; the source Form Request lost that status by converting the response to a boolean. This pass preserves the policy response and retains the 404 test expectation with no-source/no-audit/no-artifact/unchanged-revision assertions.
 
-On 2026-10-13, `npm run build` succeeded with Vite 8.3.4; it warned that optional font optimization requires fontaine. No dependency was installed. PHP 8.2 syntax checks passed for eight changed PHP files. This verifies syntax only. The targeted Laravel command and required Pint command failed before execution because the accessible PHP binary is 8.2.12; installed application dependencies require >=8.4.1. The running PHP 8.5 executable is inaccessible under current permissions.
+The other 72 checkpoint cases previously passed; they are not post-edit evidence. Pint reported 15 style issues across 73 files; parent auto-fix and verification are pending. This pass’s shell failed before startup, so no fresh Laravel test, syntax, build or Pint result is claimed. Earlier build/syntax results remain historical in the preserved execution record.
 
-New fictional `DocumentWorkflowTest` cases cover readable PDF and DOCX tables through intake, analysis, changes-requested/reject/approve fixture decisions, draft generation and stale revision rejection. Failure fixtures cover malformed formats, textless PDF, an encryption-marker PDF, oversized upload, extracted-text limit, generic ZIP, expanded-archive limit and cross-project upload refusal. These cases are **prepared, NOT TESTED**; they establish no current behavioral pass. The encryption fixture is synthetic, not representative acceptance of real encrypted PDFs or scanned documents.
+A focused fictional planning regression checks source-specific classification, unanswered payment-provider questions, candidate entities, task dependencies, priority, evidence and lack of approval. Existing document workflow fixtures exercise readable PDF/DOCX tables, rejection/changes-requested/approval and nonbinding revision-bound drafts in an isolated test database. Those fixture approvals are not human acceptance.
 
-Five category regressions were added to `AnalysisScenariosTest`. Existing scenario tests cover complete, short, ambiguous, contradictory, multiple-role, payment, sensitive-data, unrealistic and scope-change inputs; existing workflow tests cover invalid provider output, bounded retry and safe provider failure. Their recorded baseline does not establish quality scores or a new pass after these changes.
+Deprecation inspection located smalot/pdfparser Font::uchr calling mb_convert_encoding with deprecated HTML-ENTITIES encoding at vendor source line 150. The reported single warning’s exact runtime stack is unavailable. Parent must run DocumentExtractorTest with --display-deprecations and --display-phpunit-deprecations to confirm origin; no vendor edit, suppression or unapproved dependency change was made.
 
-Browser automation found no connected surfaces and no available in-app browser. Owner/reviewer UI, anti-CSRF behavior, PDF/DOCX browser uploads and rendering remain NOT TESTED in this run. Human ratings and supervisor sign-off remain blank. See [commands, results and browser steps](FINAL_EXECUTION_STATUS.md).
+Browser inventory returned no connected apps/browsers: browser checks are **NOT TESTED**. Feature HTTP tests do not prove browser rendering, uploads, anti-CSRF or usability. Human evaluation is **PENDING CODLY**, with no ratings or supervisor signature. See [pending verification and manual steps](FINAL_EXECUTION_STATUS.md).
 
 # Chapter 10 — Limitations
 
-Detailed business-type/outcome modeling, user journeys, database-entity design and specific integration plans are incomplete in the demo. Confidential source text is retained and may appear as authorized evidence; there is no comprehensive automatic credential redaction guarantee. DOCX headers, footers, text boxes and document layout need representative verification.
+DEMO now provides source-specific scope/planning and candidate entity/integration review, but does not establish comprehensive business-type/outcome modeling, validated journeys or a final entity/integration design. Business type, measurable outcomes, relationships, providers and costs remain missing unless supplied and reviewed. Confidential source text is retained; comprehensive credential redaction is not guaranteed. DOCX headers, footers, text boxes and layout need representative verification.
 
 The current analysis provider is deterministic rather than a live LLM. Its heuristic approach cannot provide general semantic understanding and must not be presented as equivalent to a production AI service.
 
@@ -140,7 +140,7 @@ The current test suite does not establish production deployment security, perfor
 
 # Chapter 11 — Future Scope
 
-The next engineering step is focused tests and Pint on an accessible compatible runtime, followed by document/browser acceptance. Broader design output improvements require scope reconciliation and human evaluation; no improvement score is claimed.
+The parent process must run focused regressions, final tests/Pint and the exact deprecation diagnostic, then append results. Manual/browser acceptance and official scope reconciliation remain. No semantic improvement score is claimed. Live AI integration is BLOCKED and actual reviewer evaluation is PENDING CODLY; both are deliberately excluded from self-service work while retained in governance.
 
 Potential future work, subject to supervisor approval, includes:
 
@@ -155,9 +155,9 @@ These items are proposals, not claims about existing functionality. Any external
 
 # Chapter 12 — Conclusion
 
-No new local commit or push occurred: the four mandated identity environment variables were absent and Git index writes were denied. Live provider access, client-data transfer, public release and deployment require written Codly authorization; only authorized humans can approve commitments or sign this DRAFT.
+This pass did not stage, commit, push or rewrite history, as instructed. Starting HEAD is human checkpoint b6ccaf1; the parent operator will verify and commit. Live provider access, client-data transfer, public release and deployment require Codly authorization; only authorized humans can approve commitments or sign this DRAFT.
 
-The inspected implementation demonstrates a Laravel-based requirement-analysis workspace with structured intake, deterministic analysis, validation, provenance handling, revision-sensitive review, approval records and a proposal-drafting workflow gated on approval of the current scope. PDF/DOCX text extraction is implemented. The operator’s historical baseline is 58 tests with 325 assertions. This run passed the frontend build and syntax checks, but Laravel tests and Pint are blocked. These checks support a development/demo milestone, not production readiness or completed human evaluation.
+The inspected implementation demonstrates a Laravel-based requirement-analysis workspace with structured intake, deterministic analysis, validation, provenance handling, revision-sensitive review, approval records and a proposal-drafting workflow gated on approval of the current scope. PDF/DOCX text extraction is implemented. The operator’s checkpoint evidence is 72 passing tests, one failure, 479 assertions and one deprecation. The known denial-status fix and semantic regressions await parent verification; no post-edit suite or Pint pass is claimed. These checks support a development/demo milestone, not production readiness or completed human evaluation.
 
 The evidence supports a development/demo milestone, not a claim of complete acceptance or production readiness. Live AI integration, end-to-end document-upload verification, completed human evaluation results, company-process confirmation and final deployment review remain outstanding or require additional evidence.
 

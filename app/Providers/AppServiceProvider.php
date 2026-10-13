@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use App\AnalysisProvider;
-use App\DeterministicAnalysisProvider;
 use App\ConfigurableAiAnalysisProvider;
+use App\DeterministicAnalysisProvider;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

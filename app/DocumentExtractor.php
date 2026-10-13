@@ -14,13 +14,13 @@ class DocumentExtractor
     {
         $format = strtolower($format);
 
-        if (!in_array($format, ['pdf', 'docx'], true)) {
+        if (! in_array($format, ['pdf', 'docx'], true)) {
             throw new RuntimeException(
                 'Unsupported document format. Only PDF and DOCX are supported.'
             );
         }
 
-        if (!is_file($path) || !is_readable($path)) {
+        if (! is_file($path) || ! is_readable($path)) {
             throw new RuntimeException(
                 'The uploaded document cannot be read.'
             );
@@ -28,7 +28,7 @@ class DocumentExtractor
 
         try {
             $text = match ($format) {
-                'pdf' => (new Parser())->parseFile($path)->getText(),
+                'pdf' => (new Parser)->parseFile($path)->getText(),
                 'docx' => $this->extractDocx($path),
             };
         } catch (Throwable $exception) {

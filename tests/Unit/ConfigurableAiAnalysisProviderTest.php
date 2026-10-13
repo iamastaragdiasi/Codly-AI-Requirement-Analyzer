@@ -6,6 +6,7 @@ use App\AnalysisPromptRegistry;
 use App\ConfigurableAiAnalysisProvider;
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Validation\ValidationException;
 use RuntimeException;
 use Tests\TestCase;
 
@@ -55,7 +56,7 @@ class ConfigurableAiAnalysisProviderTest extends TestCase
         ]);
 
         $provider = new ConfigurableAiAnalysisProvider(
-            new AnalysisPromptRegistry()
+            new AnalysisPromptRegistry
         );
 
         $result = $provider->run('extraction', ['sources' => []], 1);
@@ -75,7 +76,7 @@ class ConfigurableAiAnalysisProviderTest extends TestCase
         config(['ai_analysis.api_key' => '']);
 
         $provider = new ConfigurableAiAnalysisProvider(
-            new AnalysisPromptRegistry()
+            new AnalysisPromptRegistry
         );
 
         $this->expectException(RuntimeException::class);
@@ -93,7 +94,7 @@ class ConfigurableAiAnalysisProviderTest extends TestCase
         ]);
 
         $provider = new ConfigurableAiAnalysisProvider(
-            new AnalysisPromptRegistry()
+            new AnalysisPromptRegistry
         );
 
         try {
@@ -116,7 +117,7 @@ class ConfigurableAiAnalysisProviderTest extends TestCase
         config(['ai_analysis.endpoint' => 'http://insecure.example.test/chat/completions']);
 
         $provider = new ConfigurableAiAnalysisProvider(
-            new AnalysisPromptRegistry()
+            new AnalysisPromptRegistry
         );
 
         $this->expectException(RuntimeException::class);
@@ -138,11 +139,12 @@ class ConfigurableAiAnalysisProviderTest extends TestCase
         ]);
 
         $provider = new ConfigurableAiAnalysisProvider(
-            new AnalysisPromptRegistry()
+            new AnalysisPromptRegistry
         );
 
-        $this->expectException(\Illuminate\Validation\ValidationException::class);
+        $this->expectException(ValidationException::class);
         $this->expectExceptionMessage('The AI provider returned malformed JSON.');
 
         $provider->run('extraction', ['sources' => []], 1);
-    }}
+    }
+}

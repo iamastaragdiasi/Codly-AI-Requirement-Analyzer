@@ -5,7 +5,7 @@ namespace App;
 class DeterministicAnalysisProvider implements AnalysisProvider
 {
     /** @param array<string,mixed> $input
-     *  @return array<string,mixed>
+     * @return array<string,mixed>
      */
     public function run(string $module, array $input, int $attempt): array
     {
@@ -53,7 +53,7 @@ class DeterministicAnalysisProvider implements AnalysisProvider
                         (bool) preg_match('/revenue|sales target|reduce manual|business goal|reconciliation/i', $text) => 'Business',
                         default => 'Functional',
                     };
-                    $base['title'] = 'Candidate '.$base['category'].' requirement';
+                    $base['title'] = mb_substr('Candidate '.$base['category'].': '.$text, 0, 1000);
 
                     $base['scope'] = preg_match(
                         '/out of scope|exclude|do not include/i',
@@ -110,17 +110,17 @@ class DeterministicAnalysisProvider implements AnalysisProvider
 
                     foreach ($roles as $screenRole) {
                         $screen = $base;
-                        $screen['title'] = 'Proposed screen for ' . mb_substr($screenRole, 0, 200);
+                        $screen['title'] = 'Proposed screen for '.mb_substr($screenRole, 0, 200);
                         $screen['role'] = mb_substr($screenRole, 0, 5000);
                         $screen['provenance'] = 'AI Suggested';
                         $screen['scope'] = 'optional';
-                        $screen['notes'] = 'Suggested screen; validate navigation, permissions and user journeys.';
+                        $screen['notes'] = 'DEMO journey: validate role entry point -> requirement action -> visible result/error -> acceptance. Navigation and permissions are suggestions, not client-confirmed behavior.';
                         $items[] = $screen;
                     }
                     break;
 
                 case 'modules':
-                    $base['title'] = 'Candidate module: ' . ($feature !== '' ? $feature : 'Requirement review');
+                    $base['title'] = 'Candidate module: '.($feature !== '' ? $feature : mb_substr($text, 0, 300));
                     $base['provenance'] = 'AI Suggested';
                     $base['scope'] = 'optional';
                     $base['dependencies'] = ['Client clarification', 'Technical validation'];
@@ -129,23 +129,68 @@ class DeterministicAnalysisProvider implements AnalysisProvider
                     break;
 
                 case 'tasks':
-                    $base['title'] = 'Define acceptance criteria, validate design, implement and test: '
-                        . ($feature !== '' ? $feature : 'Requirement');
-                    $base['provenance'] = 'AI Suggested';
-                    $base['scope'] = 'optional';
-                    $base['dependencies'] = ['Client clarification', 'Technical validation'];
-                    $base['notes'] = 'Provisional task; no effort or delivery commitment has been generated.';
-                    $items[] = $base;
+                    $subject = $feature !== '' ? $feature : mb_substr($text, 0, 300);
+                    $sourceLabel = 'Source '.(int) $source['id'];
+                    foreach ([
+                        ['Review acceptance criteria: ', ['Client clarification']],
+                        ['Design and implement reviewed requirement: ', [$sourceLabel.': acceptance criteria approved', 'Technical validation']],
+                        ['Verify acceptance and role permissions: ', [$sourceLabel.': implementation reviewed']],
+                    ] as [$title, $dependencies]) {
+                        $task = $base;
+                        $task['title'] = mb_substr($title.$subject, 0, 1000);
+                        $task['provenance'] = 'AI Suggested';
+                        $task['scope'] = 'optional';
+                        $task['dependencies'] = $dependencies;
+                        $task['notes'] = 'DEMO task sequence linked to source evidence; no effort or delivery commitment. Excluded and Future scope requires separate authorization.';
+                        $items[] = $task;
+                    }
                     break;
 
                 case 'phases':
                     $base['title'] = $priority === 'Future'
                         ? 'Future backlog; excluded from immediate delivery pending approval'
-                        : 'Proposed discovery, implementation and validation phase';
+                        : 'Proposed discovery -> implementation -> acceptance: '.mb_substr($text, 0, 300);
                     $base['provenance'] = 'AI Suggested';
                     $base['scope'] = 'optional';
-                    $base['dependencies'] = ['Requirements review', 'Technical validation'];
-                    $base['notes'] = 'Provisional phase; timeline requires authorized PM review.';
+                    $base['dependencies'] = ['Requirements review', 'Technical validation', 'Implementation before acceptance testing'];
+                    $base['notes'] = 'Entry: reviewed scope and acceptance criteria. Exit: human acceptance of tested deliverable. Provisional sequence; dates and staffing remain unresolved.';
+                    $items[] = $base;
+                    break;
+
+                case 'business_context':
+                    $base['title'] = mb_substr('Project scope candidate: '.$text, 0, 1000);
+                    $base['notes'] = 'Source-derived scope candidate; project context and submitted priority are unconfirmed. Inclusion requires revision-bound review.';
+                    $items[] = $base;
+                    break;
+
+                case 'missing_information':
+                    $base['title'] = mb_substr('For this requirement, who acts, what triggers it, what result is expected, and how will acceptance be measured? '.$text, 0, 1000);
+                    if (preg_match('/pay|card|refund|billing/i', $text)) {
+                        $base['title'] = 'Which payment provider, currencies, refund rules and failure/reconciliation behavior are authorized?';
+                    } elseif (preg_match('/api|webhook|integration/i', $text)) {
+                        $base['title'] = 'Who owns the integration, which API contract and authentication apply, and what retry/failure limits are agreed?';
+                    } elseif (preg_match('/fast|performance|latency|uptime|unlimited/i', $text)) {
+                        $base['title'] = 'What measurable response-time, concurrent-user and availability targets apply, under which test conditions?';
+                    }
+                    $base['provenance'] = 'Missing';
+                    $base['notes'] = 'Source-specific unanswered question; DEMO does not infer the client answer.';
+                    $items[] = $base;
+                    break;
+
+                case 'architecture':
+                    $base['title'] = mb_substr('Design review for: '.$text, 0, 1000);
+                    $base['provenance'] = 'AI Suggested';
+                    $base['scope'] = 'optional';
+                    $base['dependencies'] = ['Confirmed role permissions', 'Reviewed acceptance criteria'];
+                    preg_match_all('/\b(customer|order|payment|refund|invoice|product|employee|appointment|report)s?\b/i', $text, $entityMatches);
+                    $entities = array_values(array_unique(array_map('strtolower', $entityMatches[1])));
+                    $base['notes'] = ($entities === []
+                        ? 'Entities: unresolved; identify records with the client.'
+                        : 'Candidate entities mentioned in evidence: '.implode(', ', $entities).'. Relationships and ownership are unresolved.')
+                        .' Validate lifecycle, access and retention before schema design.'
+                        .(preg_match('/pay|card|refund|billing/i', $text)
+                            ? ' Payment integration review: provider authorization, idempotency, verified callbacks and reconciliation; provider and costs unresolved.'
+                            : ' Integration review: API ownership, authentication, contract, retry and failure handling; provider and costs unresolved.');
                     $items[] = $base;
                     break;
             }
@@ -200,9 +245,10 @@ class DeterministicAnalysisProvider implements AnalysisProvider
         )) {
             $titles = match ($module) {
                 'business_context' => [
-                    'Business problem: ' . ($input['business_problem'] ?? 'Not specified'),
-                    'Objectives: ' . ($objectives !== '' ? $objectives : 'Not specified'),
-                    'Stakeholders and roles to validate: ' . ($targetUsers !== '' ? $targetUsers : 'Not specified'),
+                    'Business problem: '.($input['business_problem'] ?? 'Not specified'),
+                    'Objectives: '.($objectives !== '' ? $objectives : 'Not specified'),
+                    'Stakeholders and roles to validate: '.($targetUsers !== '' ? $targetUsers : 'Not specified'),
+                    'Business type, outcome measures and scope boundaries require client clarification; no industry or success metric is assumed.',
                 ],
                 'missing_information' => [
                     'Who is authorized to approve the final scope and acceptance criteria?',
@@ -219,10 +265,12 @@ class DeterministicAnalysisProvider implements AnalysisProvider
                 default => [],
             };
 
+            $contextItems = [];
             foreach ($titles as $title) {
-                $isMissingInformation = $module === 'missing_information';
+                $isMissingInformation = $module === 'missing_information'
+                    || str_starts_with($title, 'Business type,');
 
-                $items[] = [
+                $contextItems[] = [
                     'title' => mb_substr($title, 0, 1000),
                     'provenance' => $isMissingInformation ? 'Missing' : 'AI Suggested',
                     'source_ids' => [],
@@ -242,6 +290,9 @@ class DeterministicAnalysisProvider implements AnalysisProvider
                         : 'Demo output. Validate with the client and authorized reviewer; no missing answer, price or estimate has been invented.',
                 ];
             }
+            $items = $module === 'business_context'
+                ? array_merge($contextItems, $items)
+                : array_merge($items, $contextItems);
         }
 
         return [

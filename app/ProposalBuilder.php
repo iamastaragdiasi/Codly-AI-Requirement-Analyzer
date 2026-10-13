@@ -7,7 +7,7 @@ use App\Models\Project;
 class ProposalBuilder
 {
     /**
-     * @param array<string, mixed> $terms
+     * @param  array<string, mixed>  $terms
      * @return array<string, mixed>
      */
     public function draft(Project $project, array $terms): array

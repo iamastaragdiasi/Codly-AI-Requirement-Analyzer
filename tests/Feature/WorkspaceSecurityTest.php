@@ -59,6 +59,7 @@ class WorkspaceSecurityTest extends TestCase
             'name', 'business_problem', 'objectives', 'target_users',
         ]));
     }
+
     public function test_context_edits_preserve_history_and_stale_forms_do_not_overwrite(): void
     {
         $owner = User::factory()->create();
@@ -147,7 +148,7 @@ class WorkspaceSecurityTest extends TestCase
         $this->post(route('analysis.store', $project))->assertRedirect();
         $results = $project->analyses()->latest('id')->firstOrFail()->results;
         $this->assertStringContainsString('sensitive-data minimization', $results['security']['items'][0]['title']);
-        $this->assertStringContainsString('Validate feasibility',$results['ambiguity_conflicts']['items'][1]['title']);
-        $this->assertStringContainsString('Potential scope change',$results['ambiguity_conflicts']['items'][2]['title']);
+        $this->assertStringContainsString('Validate feasibility', $results['ambiguity_conflicts']['items'][1]['title']);
+        $this->assertStringContainsString('Potential scope change', $results['ambiguity_conflicts']['items'][2]['title']);
     }
 }

@@ -3,6 +3,8 @@
 namespace Tests\Unit;
 
 use App\DocumentExtractor;
+use PhpOffice\PhpWord\IOFactory;
+use PhpOffice\PhpWord\PhpWord;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
@@ -18,7 +20,7 @@ class DocumentExtractorTest extends TestCase
     {
         $this->expectException(RuntimeException::class);
         (new DocumentExtractor)->extract(
-            sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'missing-document-' . uniqid() . '.pdf',
+            sys_get_temp_dir().DIRECTORY_SEPARATOR.'missing-document-'.uniqid().'.pdf',
             'pdf'
         );
     }
@@ -36,26 +38,27 @@ class DocumentExtractorTest extends TestCase
             @unlink($path);
         }
     }
+
     public function test_extracts_text_from_valid_docx(): void
     {
         $path = tempnam(sys_get_temp_dir(), 'codly-docx-');
         self::assertNotFalse($path);
 
-        $docxPath = $path . '.docx';
+        $docxPath = $path.'.docx';
         @unlink($path);
 
         try {
-            $document = new \PhpOffice\PhpWord\PhpWord();
+            $document = new PhpWord;
             $section = $document->addSection();
             $section->addText('Customers need an order tracking dashboard.');
 
-            $writer = \PhpOffice\PhpWord\IOFactory::createWriter(
+            $writer = IOFactory::createWriter(
                 $document,
                 'Word2007'
             );
             $writer->save($docxPath);
 
-            $text = (new DocumentExtractor())->extract($docxPath, 'docx');
+            $text = (new DocumentExtractor)->extract($docxPath, 'docx');
 
             self::assertStringContainsString(
                 'Customers need an order tracking dashboard.',
@@ -65,15 +68,16 @@ class DocumentExtractorTest extends TestCase
             @unlink($docxPath);
         }
     }
+
     public function test_extracts_text_from_valid_pdf(): void
     {
-        $stream = "BT /F1 12 Tf 72 720 Td (PDF requirement extraction works.) Tj ET";
+        $stream = 'BT /F1 12 Tf 72 720 Td (PDF requirement extraction works.) Tj ET';
 
         $objects = [
             '<< /Type /Catalog /Pages 2 0 R >>',
             '<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
             '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R >> >> /Contents 4 0 R >>',
-            "<< /Length " . strlen($stream) . " >>\nstream\n" . $stream . "\nendstream",
+            '<< /Length '.strlen($stream)." >>\nstream\n".$stream."\nendstream",
             '<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>',
         ];
 
@@ -83,7 +87,7 @@ class DocumentExtractorTest extends TestCase
         foreach ($objects as $index => $object) {
             $objectNumber = $index + 1;
             $offsets[] = strlen($pdf);
-            $pdf .= $objectNumber . " 0 obj\n" . $object . "\nendobj\n";
+            $pdf .= $objectNumber." 0 obj\n".$object."\nendobj\n";
         }
 
         $xrefOffset = strlen($pdf);
@@ -95,7 +99,7 @@ class DocumentExtractorTest extends TestCase
         }
 
         $pdf .= "trailer\n<< /Size 6 /Root 1 0 R >>\n";
-        $pdf .= "startxref\n" . $xrefOffset . "\n%%EOF";
+        $pdf .= "startxref\n".$xrefOffset."\n%%EOF";
 
         $path = tempnam(sys_get_temp_dir(), 'codly-pdf-');
         self::assertNotFalse($path);
@@ -103,7 +107,7 @@ class DocumentExtractorTest extends TestCase
         try {
             file_put_contents($path, $pdf);
 
-            $text = (new DocumentExtractor())->extract($path, 'pdf');
+            $text = (new DocumentExtractor)->extract($path, 'pdf');
 
             self::assertStringContainsString(
                 'PDF requirement extraction works.',

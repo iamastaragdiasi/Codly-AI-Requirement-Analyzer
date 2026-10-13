@@ -173,6 +173,8 @@ class DocumentWorkflowTest extends TestCase
             'kind' => 'document', 'priority' => 'Must',
             'file' => UploadedFile::fake()->createWithContent('fictional.pdf', $this->pdf('Fictional requirement')),
         ])->assertNotFound();
+        $this->assertDatabaseCount('audit_events', 0);
+        $this->assertDatabaseCount('artifacts', 0);
         $this->assertDatabaseCount('sources', 0);
         $this->assertSame(1, $project->fresh()->revision);
     }

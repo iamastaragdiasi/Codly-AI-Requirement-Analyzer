@@ -103,4 +103,40 @@ class AnalysisScenariosTest extends TestCase
         $this->assertFalse($project->refresh()->isApproved());
         Http::assertNothingSent();
     }
+
+    public function test_source_specific_demo_planning_keeps_unanswered_facts_and_provenance(): void
+    {
+        config(['ai_analysis.driver' => 'demo']);
+        Http::preventStrayRequests();
+        $owner = User::factory()->create();
+        $project = Project::factory()->create(['user_id' => $owner->id]);
+        $text = 'Customers need card refunds.';
+        $this->actingAs($owner)->post(route('sources.store', $project), [
+            'kind' => 'structured', 'original' => $text, 'priority' => 'Could',
+            'role' => 'Customer', 'feature' => 'Refund request',
+        ])->assertRedirect();
+        $this->post(route('analysis.store', $project))->assertRedirect();
+
+        $analysis = $project->analyses()->latest('id')->firstOrFail();
+        $source = $project->sources()->firstOrFail();
+        $results = $analysis->results;
+        $this->assertSame('complete', $analysis->status);
+        $this->assertSame('Candidate Functional: Customers need card refunds.', $results['classification']['items'][0]['title']);
+        $this->assertSame('Which payment provider, currencies, refund rules and failure/reconciliation behavior are authorized?', $results['missing_information']['items'][0]['title']);
+        $this->assertSame('Missing', $results['missing_information']['items'][0]['provenance']);
+        $this->assertSame([$source->id], $results['missing_information']['items'][0]['source_ids']);
+        $this->assertStringContainsString('Candidate entities mentioned in evidence: customer, refund.', $results['architecture']['items'][0]['notes']);
+        $this->assertStringContainsString('provider and costs unresolved', $results['architecture']['items'][0]['notes']);
+        $this->assertCount(3, $results['tasks']['items']);
+        $this->assertSame('Review acceptance criteria: Refund request', $results['tasks']['items'][0]['title']);
+        $this->assertSame(['Source '.$source->id.': implementation reviewed'], $results['tasks']['items'][2]['dependencies']);
+        foreach ($results['tasks']['items'] as $task) {
+            $this->assertSame('Could', $task['priority']);
+            $this->assertSame('AI Suggested', $task['provenance']);
+            $this->assertSame([$text], $task['statements']);
+        }
+        $this->assertSame([$source->id], $results['business_context']['items'][4]['source_ids']);
+        $this->assertFalse($project->refresh()->isApproved());
+        Http::assertNothingSent();
+    }
 }

@@ -9,7 +9,7 @@ class AnalysisPromptRegistryTest extends TestCase
 {
     public function test_all_pipeline_modules_have_versioned_instructions(): void
     {
-        $registry = new AnalysisPromptRegistry();
+        $registry = new AnalysisPromptRegistry;
 
         $this->assertSame('ai-v1', AnalysisPromptRegistry::VERSION);
         $this->assertSame([

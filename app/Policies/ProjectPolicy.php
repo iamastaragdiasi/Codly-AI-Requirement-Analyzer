@@ -31,6 +31,7 @@ class ProjectPolicy
             ? Response::allow()
             : Response::denyAsNotFound();
     }
+
     public function review(User $user, Project $project): bool
     {
         return $user->is_reviewer && $project->reviewer_id === $user->id;
