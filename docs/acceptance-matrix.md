@@ -20,7 +20,7 @@ Supersedes earlier runtime, absent-handoff and publication blockers below while 
 
 ### Official specification and master-plan mapping
 
-Portability follow-up: CI confirmed valid DOCX as `application/octet-stream`. The fallback is limited to `.docx` and still requires bounded archive validation and actual readable-text parsing. Valid fallback DOCX, binary non-DOCX/non-PDF refusal and malformed file-array regressions were added; final local suite **79 pass / 560 assertions**, one PHPWord deprecation; Pint passed. Final Linux CI disposition is in the execution status.
+Portability follow-up: CI confirmed valid DOCX as `application/octet-stream`. The fallback is limited to `.docx` and still requires bounded archive validation and actual readable-text parsing. Valid fallback DOCX, binary non-DOCX/non-PDF refusal and malformed file-array regressions were added; final local suite **79 pass / 560 assertions**, one PHPWord deprecation; Pint passed. Both Linux CI jobs passed at published fix SHA `9fa6cb967345a9c372a614ae92ac0cb820e8a3cd`; gate/normal push exit 0. Browser and human acceptance remain unverified.
 
 | Official sections | Implemented evidence / disposition |
 |---|---|

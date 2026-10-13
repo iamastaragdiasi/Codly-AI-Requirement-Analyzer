@@ -118,7 +118,7 @@ Any future live AI integration must use only Codly-approved services and credent
 
 # Chapter 9 — Testing
 
-Final portability-fix follow-up: local suite **79 pass / 560 assertions**, exit 0, with one non-failing PHPWord warning; Pint passed. Linux CI diagnosed valid DOCX as generic binary MIME. The fix allows that MIME only for DOCX while retaining package structure, expansion, parsing and text limits; positive and binary/file-array refusal regressions pass locally. Final CI/publication evidence is recorded in the execution status, separately from historical failures and run counts below.
+Final portability-fix follow-up: local suite **79 pass / 560 assertions**, exit 0, with one non-failing PHPWord warning; Pint passed. Linux CI diagnosed valid DOCX as generic binary MIME. The fix allows that MIME only for DOCX while retaining package structure, expansion, parsing and text limits; positive and binary/file-array refusal regressions pass. Both Linux PHP 8.4 test and frontend jobs succeeded at normally published fix `9fa6cb967345a9c372a614ae92ac0cb820e8a3cd`. This is automated verification, not browser or company acceptance. Historical failures and counts remain below.
 
 The operator supplied the first full checkpoint-b6ccaf1 result: **72 PASS, one failure, 479 assertions and one deprecation**. The failure expected 404 for an unassigned document uploader but received 403. The established policy hides inaccessible projects; the source Form Request lost that status by converting the response to a boolean. This pass preserves the policy response and retains the 404 test expectation with no-source/no-audit/no-artifact/unchanged-revision assertions.
 

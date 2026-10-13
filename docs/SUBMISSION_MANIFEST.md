@@ -4,7 +4,7 @@ Prepared 13 October 2026 (Asia/Calcutta) for Astarag Diasi, Codly India Private 
 
 Repository: https://github.com/iamastaragdiasi/Codly-AI-Requirement-Analyzer
 
-Verified published application SHA: `9dbf973822b05388fe6066ac9a3fafe22ec81cd0`. Later finishing commits preserve this ancestor. Use `git rev-parse HEAD` and `git ls-remote origin refs/heads/main` to record the final documentation/fix SHA after publication; the final chat handoff supplies that verified SHA. A manifest cannot contain the SHA of its own committing tree. [Execution status](FINAL_EXECUTION_STATUS.md) records publication checkpoints and actual outcomes.
+Verified published application SHA: `9fa6cb967345a9c372a614ae92ac0cb820e8a3cd`, with passing local tests and both Linux CI jobs green. Later documentation commits preserve this ancestor. Use `git rev-parse HEAD` and `git ls-remote origin refs/heads/main` to record the final documentation SHA after publication; the final chat handoff supplies that verified SHA. A manifest cannot contain the SHA of its own committing tree. [Execution status](FINAL_EXECUTION_STATUS.md) records publication checkpoints and actual outcomes.
 
 | Submission component | Repository location / purpose |
 |---|---|
